@@ -1,0 +1,245 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #afd0f4;
+    color: white;
+    padding: 1rem;
+    height: 7rem;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('images/clinica.jpeg'); 
+    backdrop-filter: blur(1.5px);
+    background-size: cover; 
+    background-position: center;
+    background-attachment: fixed; 
+    background-repeat: no-repeat;
+}
+
+main {
+    flex: 1; /* Faz o conteúdo crescer e empurrar o footer para baixo */
+    padding: 20px;
+}
+
+.img-header {
+    width: 80px; 
+    margin-left: 7rem;
+    float: left;
+}
+
+.img-infobox {
+    display: block; /* Garante que a imagem fique em linha separada */
+    margin: 10px auto 0 auto; /* Centraliza horizontalmente */
+    max-width: 150px; /* Controla o tamanho máximo da imagem */
+    height: auto; /* Mantém a proporção */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ocupa 100% da altura da tela */
+}
+
+.h1-header{
+    color: #292f7e;
+    padding-left: 1rem;
+    margin-top: 1.5rem;
+    font-family: sans-serif;
+    float: left;
+}
+
+.h1-body{
+    color: rgb(41, 47, 126);
+}
+
+.h2-body{
+    color: rgb(41, 47, 126);
+}
+
+.navbar {
+    text-decoration: none;
+    right: 3rem;
+    top: 3rem;
+    color: white;
+    position: fixed;
+}
+
+.btn-entrar {
+    text-decoration: none;
+    font-size: 17px;
+    background: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin: 2em;
+    padding: 1em 1.5em;
+    font-family: sans-serif;
+    color: rgb(41, 47, 126);
+    text-transform: uppercase;
+    position: relative;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+  
+.btn-entrar::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background-color: rgb(41, 47, 126);
+    transition: 0.5s ease;
+}
+  
+.btn-entrar:hover {
+    color: #1e1e2b;
+    transition-delay: 0.5s;
+}
+  
+.btn-entrar:hover::before {
+    width: 100%;
+}
+  
+.btn-entrar::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 0;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    transition: 0.4s ease;
+    z-index: -1;
+}
+  
+.btn-entrar:hover::after {
+    height: 100%;
+    transition-delay: 0.4s;
+    color: aliceblue;
+}
+
+.btn-cadastrar {
+    text-decoration: none;
+    font-size: 17px;
+    background: transparent;
+    border: none;
+    margin: 2em;
+    padding: 1em 1.5em;
+    font-family: sans-serif;
+    color: #292f7e;
+    text-transform: uppercase;
+    position: relative;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+  
+.btn-cadastrar::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background-color: #292f7e;
+    transition: 0.5s ease;
+}
+  
+.btn-cadastrar:hover {
+    color: #1e1e2b;
+    transition-delay: 0.5s;
+}
+  
+.btn-cadastrar:hover::before {
+    width: 100%;
+}
+  
+.btn-cadastrar::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 0;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    transition: 0.4s ease;
+    z-index: -1;
+}
+  
+.btn-cadastrar:hover::after {
+    height: 100%;
+    transition-delay: 0.4s;
+    color: aliceblue;
+}
+
+.footer {
+    background-color: #afd0f4;
+    color: #292f7e;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 5rem;
+    text-align: center;
+    justify-content: center;
+    vertical-align: middle;
+    padding: 2em 0;
+    margin-top: 2em;
+}
+
+.cadastro-section {
+    display: grid;
+    max-width: 900px;
+    margin: 10px;
+    align-items: stretch; /* Faz todas as caixas terem a mesma altura */
+}
+
+.cadastro-section {
+    display: grid;
+    max-width: 900px;
+    margin: 10px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cadastro-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.cadastro-section label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.cadastro-section input, .cadastro-section select, .cadastro-section textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.cadastro-section button {
+    background-color: #292f7e;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.cadastro-section button:hover {
+    background-color: #1e1e2b;
+}
