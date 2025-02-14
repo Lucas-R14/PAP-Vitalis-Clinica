@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cadastro</title>
+    <title>Cadastro</title>
     <link rel="stylesheet" href="cadastro.css">
 </head>
 
@@ -23,6 +23,8 @@
             <form id="cadastroForm" action="processar_cadastro.php" method="POST">
                 <div class="cadastro-section">
                     <h2 class="h2-body">Cadastro de Cliente</h2>
+
+                    <!-- Campos do formulário -->
                     <label for="nome">Nome Completo:</label>
                     <input type="text" id="nome" name="nome" required>
 
@@ -63,6 +65,7 @@
                     <label for="historico_medico">Histórico Médico:</label>
                     <textarea id="historico_medico" name="historico_medico" rows="4"></textarea>
 
+                    <!-- Botão de envio -->
                     <button type="submit">Cadastrar</button>
                 </div>
             </form>
