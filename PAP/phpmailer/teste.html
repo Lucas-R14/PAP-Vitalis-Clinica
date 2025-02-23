@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar E-mail</title>
+</head>
+<body>
+    <h1>Enviar E-mail</h1>
+    <form action="enviar_email.php" method="POST">
+        <label for="destinatario">Destinatário:</label><br>
+        <input type="email" id="destinatario" name="destinatario" required><br><br>
+
+        <label for="assunto">Assunto:</label><br>
+        <input type="text" id="assunto" name="assunto" required><br><br>
+
+        <label for="corpo">Corpo do E-mail:</label><br>
+        <textarea id="corpo" name="corpo" rows="5" cols="40" required></textarea><br><br>
+
+        <button type="submit">Enviar E-mail</button>
+    </form>
+</body>
+</html>
