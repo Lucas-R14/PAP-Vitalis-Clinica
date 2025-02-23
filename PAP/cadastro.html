@@ -15,12 +15,12 @@
             <h1 class="h1-header"> Vitalis Clínica</h1>
             <nav class="navbar">
                 <a class="btn-cadastrar" href="cadastro.html">Cadastrar-se</a>
-                <a class="btn-entrar" href="index.html">Entrar</a>
+                <a class="btn-entrar" href="login.html">Entrar</a>
             </nav>
         </header>
 
-        <main class="main-content">
-            <form id="cadastroForm" action="processar_cadastro.php" method="POST">
+        <main>
+            <form id="cadastroForm" action="processar_cadastro.php" method="POST" onsubmit="return validarSenhas()">
                 <div class="cadastro-section">
                     <h2 class="h2-body">Cadastro de Cliente</h2>
 
@@ -62,6 +62,9 @@
                     <label for="confirmar_senha">Confirmar Senha:</label>
                     <input type="password" id="confirmar_senha" name="confirmar_senha" required>
 
+                    <!-- Mensagem de erro para senhas não coincidentes -->
+                    <p id="erroSenha" style="color: red; display: none;">As senhas não coincidem!</p>
+
                     <label for="historico_medico">Histórico Médico:</label>
                     <textarea id="historico_medico" name="historico_medico" rows="4"></textarea>
 
@@ -76,6 +79,36 @@
             <p>Copyright &copy; 2025 Vitalis Clínica</p>
         </footer>
     </div>
+
+    <script>
+        // Função para validar as senhas ao enviar o formulário
+        function validarSenhas() {
+            const senha = document.getElementById('senha').value;
+            const confirmarSenha = document.getElementById('confirmar_senha').value;
+            const erroSenha = document.getElementById('erroSenha');
+
+            if (senha !== confirmarSenha) {
+                erroSenha.style.display = 'block'; // Mostra a mensagem de erro
+                return false; // Impede o envio do formulário
+            } else {
+                erroSenha.style.display = 'none'; // Esconde a mensagem de erro
+                return true; // Permite o envio do formulário
+            }
+        }
+
+        // Validação em tempo real (melhoria adicional)
+        document.getElementById('confirmar_senha').addEventListener('input', function () {
+            const senha = document.getElementById('senha').value;
+            const confirmarSenha = this.value;
+            const erroSenha = document.getElementById('erroSenha');
+
+            if (senha !== confirmarSenha) {
+                erroSenha.style.display = 'block'; // Mostra a mensagem de erro
+            } else {
+                erroSenha.style.display = 'none'; // Esconde a mensagem de erro
+            }
+        });
+    </script>
 </body>
 
 </html>
