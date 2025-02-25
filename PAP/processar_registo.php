@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Confirmação de Cadastro</title>
+            <title>Confirmação de Registo</title>
             <style>
                 body {
                     font-family: Arial, sans-serif;
@@ -151,10 +151,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="email-body">
                     <p>Olá, <strong>' . $primeiro_nome . ' ' . $ultimo_nome . '</strong>!</p>
-                    <p>Obrigado por se cadastrar na <strong>Vitalis Clínica</strong>.</p>
+                    <p>Obrigado por se registar na <strong>Vitalis Clínica</strong>.</p>
                     <p>Seu código de verificação é:</p>
                     <div class="codigo-verificacao">' . $codigo_verificacao . '</div>
-                    <p>Por favor, insira esse código na página de confirmação para concluir seu cadastro.</p>
+                    <p>Por favor, insira esse código na página de confirmação para concluir seu registo.</p>
                 </div>
                 <div class="email-footer">
                     <p>Atenciosamente,</p>
