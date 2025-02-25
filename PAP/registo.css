@@ -1,0 +1,305 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #afd0f4;
+    color: white;
+    padding: 1rem;
+    height: 7rem;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('images/clinica.jpeg'); 
+    backdrop-filter: blur(1.5px);
+    background-size: cover; 
+    background-position: center;
+    background-attachment: fixed; 
+    background-repeat: no-repeat;
+}
+
+main {
+    flex: 1; /* Faz o conteúdo crescer e empurrar o footer para baixo */
+    padding: 20px;
+}
+
+.img-header {
+    width: 80px; 
+    margin-left: 7rem;
+    float: left;
+}
+
+.img-infobox {
+    display: block; /* Garante que a imagem fique em linha separada */
+    margin: 10px auto 0 auto; /* Centraliza horizontalmente */
+    max-width: 150px; /* Controla o tamanho máximo da imagem */
+    height: auto; /* Mantém a proporção */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ocupa 100% da altura da tela */
+}
+
+.h1-header{
+    color: #292f7e;
+    padding-left: 1rem;
+    margin-top: 1.5rem;
+    font-family: sans-serif;
+    float: left;
+}
+
+.h1-body{
+    color: rgb(41, 47, 126);
+}
+
+.h2-body{
+    color: rgb(41, 47, 126);
+}
+
+.navbar {
+    text-decoration: none;
+    right: 3rem;
+    top: 3rem;
+    color: white;
+    position: fixed;
+}
+
+.btn-entrar {
+    text-decoration: none;
+    font-size: 17px;
+    background: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin: 2em;
+    padding: 1em 1.5em;
+    font-family: sans-serif;
+    color: rgb(41, 47, 126);
+    text-transform: uppercase;
+    position: relative;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+  
+.btn-entrar::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background-color: rgb(41, 47, 126);
+    transition: 0.5s ease;
+}
+  
+.btn-entrar:hover {
+    color: #1e1e2b;
+    transition-delay: 0.5s;
+}
+  
+.btn-entrar:hover::before {
+    width: 100%;
+}
+  
+.btn-entrar::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 0;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    transition: 0.4s ease;
+    z-index: -1;
+}
+  
+.btn-entrar:hover::after {
+    height: 100%;
+    transition-delay: 0.4s;
+    color: aliceblue;
+}
+
+.btn-registar {
+    text-decoration: none;
+    font-size: 17px;
+    background: transparent;
+    border: none;
+    margin: 2em;
+    padding: 1em 1.5em;
+    font-family: sans-serif;
+    color: #292f7e;
+    text-transform: uppercase;
+    position: relative;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+  
+.btn-registar::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background-color: #292f7e;
+    transition: 0.5s ease;
+}
+  
+.btn-registar:hover {
+    color: #1e1e2b;
+    transition-delay: 0.5s;
+}
+  
+.btn-registar:hover::before {
+    width: 100%;
+}
+  
+.btn-registar::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 0;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    transition: 0.4s ease;
+    z-index: -1;
+}
+  
+.btn-registar:hover::after {
+    height: 100%;
+    transition-delay: 0.4s;
+    color: aliceblue;
+}
+
+.footer {
+    background-color: #afd0f4;
+    color: #292f7e;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 5rem;
+    text-align: center;
+    justify-content: center;
+    vertical-align: middle;
+    padding: 2em 0;
+    margin-top: 2em;
+}
+
+/* Estilo para a seção de registro */
+.registo-section {
+    max-width: 900px;
+    width: 100%;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.95); /* Fundo branco com transparência */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Sombra mais pronunciada */
+    backdrop-filter: blur(10px); /* Efeito de desfoque */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Borda sutil */
+    margin: 20px auto; /* Centraliza o formulário */
+}
+
+.registo-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #292f7e;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.registo-section label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #292f7e;
+    font-size: 16px;
+}
+
+.registo-section input,
+.registo-section select,
+.registo-section textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo semi-transparente */
+}
+
+.registo-section input:focus,
+.registo-section select:focus,
+.registo-section textarea:focus {
+    border-color: #292f7e;
+    box-shadow: 0 0 8px rgba(41, 47, 126, 0.3);
+    outline: none;
+    background-color: white; /* Fundo branco ao focar */
+}
+
+.registo-section textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.registo-section button {
+    width: 100%;
+    background-color: #292f7e;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 20px;
+}
+
+.registo-section button:hover {
+    background-color: #1e235a;
+    transform: translateY(-2px);
+}
+
+.registo-section button:active {
+    transform: translateY(0);
+}
+
+/* Estilo para a mensagem de erro */
+#erroSenha {
+    color: #ff4d4d;
+    font-size: 14px;
+    margin-top: -10px;
+    margin-bottom: 20px;
+    display: none;
+    text-align: center;
+}
+
+/* Melhoria para os campos de seleção */
+.registo-section select {
+    appearance: none; /* Remove o estilo padrão do select */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23292f7e'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
+    padding-right: 36px; /* Espaço para o ícone */
+}
+
+/* Efeito de hover nos campos */
+.registo-section input:hover,
+.registo-section select:hover,
+.registo-section textarea:hover {
+    border-color: #292f7e;
+    box-shadow: 0 0 8px rgba(41, 47, 126, 0.2);
+}
