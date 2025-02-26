@@ -32,9 +32,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sexo = $_POST['sexo'];
     $telefone = $_POST['telefone'];
     $email = $_POST['email'];
-    $endereco = isset($_POST['endereco']) ? $_POST['endereco'] : '';
-    $senha = isset($_POST['senha']) ? $_POST['senha'] : '';
-    $confirmar_senha = isset($_POST['confirmar_senha']) ? $_POST['confirmar_senha'] : '';
+    $endereco = $_POST['endereco'];
+    $senha = $_POST['senha']; // Campo do formulário
+    $confirmar_senha = $_POST['confirmar_senha']; // Campo do formulário
     $historico_medico = $_POST['historico_medico'];
 
     // Verifica se as senhas coincidem
@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'telefone' => $telefone,
             'email' => $email,
             'endereco' => $endereco,
-            'senha' => $senha,
+            'senha' => $senha, // Mapeia para o campo "senha" no banco de dados
             'historico_medico' => $historico_medico
         ];
         $_SESSION['codigo_verificacao'] = $codigo_verificacao;

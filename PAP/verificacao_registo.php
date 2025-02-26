@@ -29,8 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id_cliente = gerarIdCliente($conn);
 
         // Prepara a query SQL para inserir os dados na tabela Cliente
-        $sql = "INSERT INTO Cliente (id_cliente, nome, nacionalidade, nif, cc, data_nascimento, sexo, telefone, email, endereco, data_registo, historico_medico)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURDATE(), ?)";
+        $sql = "INSERT INTO Cliente (id_cliente, nome, nacionalidade, nif, cc, data_nascimento, sexo, telefone, email, endereco, senha, data_registo, historico_medico)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURDATE(), ?)";
 
         // Prepara a declaração
         $stmt = $conn->prepare($sql);
@@ -38,8 +38,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             die("Erro na preparação da query: " . $conn->error);
         }
 
+        // Criptografa a senha antes de armazenar no banco de dados
+        $senha_criptografada = password_hash($dados_cliente['senha'], PASSWORD_DEFAULT);
+
         // Associa os parâmetros
-        $stmt->bind_param("sssssssssss", $id_cliente, $dados_cliente['nome'], $dados_cliente['nacionalidade'], $dados_cliente['nif'], $dados_cliente['cc'], $dados_cliente['data_nascimento'], $dados_cliente['sexo'], $dados_cliente['telefone'], $dados_cliente['email'], $dados_cliente['endereco'], $dados_cliente['historico_medico']);
+        $stmt->bind_param(
+            "ssssssssssss",
+            $id_cliente,
+            $dados_cliente['nome'],
+            $dados_cliente['nacionalidade'],
+            $dados_cliente['nif'],
+            $dados_cliente['cc'],
+            $dados_cliente['data_nascimento'],
+            $dados_cliente['sexo'],
+            $dados_cliente['telefone'],
+            $dados_cliente['email'],
+            $dados_cliente['endereco'],
+            $senha_criptografada, // Senha criptografada
+            $dados_cliente['historico_medico']
+        );
 
         // Executa a query
         if ($stmt->execute()) {
