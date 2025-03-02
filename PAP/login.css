@@ -186,3 +186,88 @@ main {
     padding: 2em 0;
     margin-top: 2em;
 }
+
+/* Estilos para a caixa de login */
+.login-container {
+    max-width: 400px;
+    margin: 100px auto; /* Centraliza verticalmente e horizontalmente */
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo branco com transparência */
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px); /* Efeito de desfoque no fundo */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.login-container h2 {
+    color: #292f7e;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.login-container label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #292f7e;
+    font-weight: bold;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-container input:focus {
+    border-color: #292f7e;
+    outline: none;
+    box-shadow: 0 0 8px rgba(41, 47, 126, 0.3);
+}
+
+.login-container button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #292f7e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.login-container button:hover {
+    background-color: #1a1f5c;
+    transform: translateY(-2px);
+}
+
+.login-container button:active {
+    transform: translateY(0);
+}
+
+.mensagem-erro {
+    color: #ff4d4d;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 14px;
+}
+
+/* Efeito de hover nos links */
+.login-container a {
+    color: #292f7e;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.login-container a:hover {
+    color: #1a1f5c;
+}

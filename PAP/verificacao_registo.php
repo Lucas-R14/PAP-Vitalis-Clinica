@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h1 class="h1-header"> Vitalis Clínica</h1>
             <nav class="navbar">
                 <a class="btn-cadastrar" href="registo.html">Registar-se</a>
-                <a class="btn-entrar" href="index.html">Entrar</a>
+                <a class="btn-entrar" href="login.php">Entrar</a>
             </nav>
         </header>
 
