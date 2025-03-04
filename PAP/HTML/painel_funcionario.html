@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Funcionário</title>
+    <link rel="stylesheet" href="../CSS/painel_funcionario.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="../images/logo_transparent.png" alt="" class="img-header">
+            <h1 class="h1-header"> Vitalis Clínica</h1>
+            <nav class="navbar">
+                <a class="btn-sair" href="../PHP/logout.php">Sair</a>
+            </nav>
+        </header>
+
+        <main>
+            <div class="welcome-box">
+                <h2>Bem-vindo, <?php echo $_SESSION['nome_funcionario']; ?></h2>
+                <p>Escolha uma das funcionalidades abaixo para começar.</p>
+            </div>
+
+            <?php if ($nivel_acesso === 'Administrador'): ?>
+                <div class="functionality-section">
+                    <h3>Funcionalidades do Administrador</h3>
+                    <ul>
+                        <li><a href="../PHP/gerir_clientes.php">Gerir Clientes</a></li>
+                        <li><a href="../PHP/gerir_funcionarios.php">Gerir Funcionários</a></li>
+                        <li><a href="../HTML/criar_funcionarios.html">Criar Contas de Funcionários</a></li>
+                    </ul>
+                </div>
+            <?php endif; ?>
+
+            <?php if ($nivel_acesso === 'Médico'): ?>
+                <div class="functionality-section">
+                    <h3>Funcionalidades do Médico</h3>
+                    <ul>
+                        <li><a href="gerir_consultas.php">Gerir Consultas</a></li>
+                        <li><a href="perfil.php">Meu Perfil</a></li>
+                        <li><a href="horario.php">Horário de Trabalho</a></li>
+                    </ul>
+                </div>
+            <?php endif; ?>
+
+            <?php if ($nivel_acesso === 'Funcionário'): ?>
+                <div class="functionality-section">
+                    <h3>Funcionalidades do Funcionário</h3>
+                    <ul>
+                        <li><a href="perfil.php">Meu Perfil</a></li>
+                        <li><a href="horario.php">Horário de Trabalho</a></li>
+                    </ul>
+                </div>
+            <?php endif; ?>
+        </main>
+
+        <footer class="footer">
+            <p>Copyright &copy; 2025 Vitalis Clínica</p>
+        </footer>
+    </div>
+</body>
+</html>

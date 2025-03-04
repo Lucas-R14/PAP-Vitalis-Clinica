@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['codigo_verificacao'] = $codigo_verificacao;
 
         // Envia o e-mail de verificação
-        require 'vendor/autoload.php'; // Carrega o PHPMailer
+        require '../vendor/autoload.php'; // Carrega o PHPMailer
 
         $mail = new PHPMailer\PHPMailer\PHPMailer();
         $mail->isSMTP();
@@ -169,7 +169,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->AltBody = "Olá, $primeiro_nome $ultimo_nome!\n\nObrigado por se cadastrar na Vitalis Clínica.\n\nSeu código de verificação é: $codigo_verificacao\n\nPor favor, insira esse código na página de confirmação para concluir seu cadastro.\n\nAtenciosamente,\nEquipe Vitalis Clínica";
 
         if ($mail->send()) {
-            header("Location: verificacao_registo.php");
+            header("Location: ../PHP/verificacao_registo.php");
             exit();
         } else {
             $status_message = "Erro ao enviar o e-mail de verificação: " . $mail->ErrorInfo;
@@ -181,4 +181,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $conn->close();
 ?>
 
-<?php include 'processar_registo.html'; ?>
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado do Registo</title>
+    <link rel="stylesheet" href="../CSS/processar_registo.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../HTML/index.html"><img src="../images/logo_transparent.png" alt="" class="img-header"> </a>
+            <h1 class="h1-header"> Vitalis Clínica</h1>
+            <nav class="navbar">
+                <a class="btn-registar" href="registo.html">Registar-se</a>
+                <a class="btn-entrar" href="login.php">Entrar</a>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <h2><?php echo $status_message; ?></h2>
+            <a href="registo.html">Voltar ao formulário de registo</a>
+        </main>
+
+        <br><br><br><br>
+        <footer class="footer">
+            <p>Copyright &copy; 2025 Vitalis Clínica</p>
+        </footer>
+    </div>
+</body>
+</html>

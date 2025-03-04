@@ -78,4 +78,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<?php include 'verificacao_registo.html'; ?>
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificação de Registo</title>
+    <link rel="stylesheet" href="../CSS/verificacao_registo.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../HTML/index.html"><img src="../images/logo_transparent.png" alt="" class="img-header"> </a>
+            <h1 class="h1-header"> Vitalis Clínica</h1>
+            <nav class="navbar">
+                <a class="btn-cadastrar" href="../HTML/registo.html">Registar-se</a>
+                <a class="btn-entrar" href="../HTML/login.html">Entrar</a>
+            </nav>
+        </header>
+
+        <main>
+            <?php if (isset($registro_concluido) && $registro_concluido): ?>
+                <!-- Exibe a mensagem de sucesso e o botão de redirecionamento -->
+                <div class="mensagem-sucesso">
+                    <h2><?php echo $status_message; ?></h2>
+                    <a href="../HTML/index.html" class="btn-redirecionar">Voltar à Página Inicial</a>
+                </div>
+            <?php else: ?>
+                <!-- Exibe o formulário de verificação -->
+                <div class="verificacao-container">
+                    <h2>Verificação de Registo</h2>
+                    <form method="POST" action="verificacao_registo.php">
+                        <input type="text" id="codigo_verificacao" name="codigo_verificacao" placeholder="Digite o código de verificação" required>
+                        <button type="submit">Verificar</button>
+                    </form>
+                    <?php if (!empty($status_message)): ?>
+                        <p class="status-message"><?php echo $status_message; ?></p>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
+        </main>
+
+        <br><br><br><br>
+        <footer class="footer">
+            <p>Copyright &copy; 2025 Vitalis Clínica</p>
+        </footer>
+    </div>
+</body>
+</html>

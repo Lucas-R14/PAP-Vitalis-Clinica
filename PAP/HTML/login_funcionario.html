@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Login Funcionário</title>
     <link rel="stylesheet" href="../CSS/login.css">
 </head>
 
@@ -15,14 +15,14 @@
             <h1 class="h1-header"> Vitalis Clínica</h1>
             <nav class="navbar">
                 <a class="btn-cadastrar" href="../HTML/registo.html">Registar-se</a>
-                <a class="btn-entrar" href="../HTML/login.html">Entrar</a>
+                <a class="btn-entrar" href="../HTML/login_funcionario.html">Entrar</a>
             </nav>
         </header>
 
         <main>
             <div class="login-container">
-                <h2>Login</h2>
-                <form method="POST" action="../PHP/login.php">
+                <h2>Login Funcionário</h2>
+                <form method="POST" action="../PHP/login_funcionario.php">
                     <label for="cc">Cartão de Cidadão:</label>
                     <input type="text" id="cc" name="cc" required>
 
@@ -35,10 +35,7 @@
                     <p class="mensagem-erro"><?php echo $mensagem_erro; ?></p>
                 <?php endif; ?>
                 <br>
-                <p>Não tem uma conta? <a href="registo.html">Registe-se aqui</a></p>
-                <br>
-                <!-- Link para o login de funcionários -->
-                <p>É um funcionário? <a href="../HTML/login_funcionario.html">Entrar aqui</a></p>
+                <p>Não tem uma conta? <a href="registo.html">Registre-se aqui</a></p>
             </div>
         </main>
 

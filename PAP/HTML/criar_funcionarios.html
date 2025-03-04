@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Contas de Funcionários</title>
+    <link rel="stylesheet" href="../CSS/painel_funcionario.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Criar Contas de Funcionários</h1>
+            <nav>
+                <a class="btn-sair" href="../PHP/painel_funcionario.php">Voltar</a>
+            </nav>
+        </header>
+
+        <main>
+            <h2>Adicionar Novo Funcionário</h2>
+            <form method="POST" action="criar_contas.php">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="nif">NIF:</label>
+                <input type="text" id="nif" name="nif" required maxlength="9">
+
+                <label for="cc">Cartão de Cidadão:</label>
+                <input type="text" id="cc" name="cc" required maxlength="12">
+
+                <label for="data_nascimento">Data de Nascimento:</label>
+                <input type="date" id="data_nascimento" name="data_nascimento" required>
+
+                <label for="sexo">Sexo:</label>
+                <select id="sexo" name="sexo" required>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Feminino">Feminino</option>
+                    <option value="Outro">Outro</option>
+                </select>
+
+                <label for="telefone">Telefone:</label>
+                <input type="text" id="telefone" name="telefone" required maxlength="15">
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="endereco">Endereço:</label>
+                <input type="text" id="endereco" name="endereco" required>
+
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" required>
+
+                <label for="nivel_acesso">Nível de Acesso:</label>
+                <select id="nivel_acesso" name="nivel_acesso" required>
+                    <option value="Administrador">Administrador</option>
+                    <option value="Médico">Médico</option>
+                    <option value="Funcionário">Funcionário</option>
+                </select>
+
+                <button type="submit">Adicionar Funcionário</button>
+            </form>
+
+            <?php if (isset($mensagem_sucesso)): ?>
+                <p class="mensagem-sucesso"><?php echo $mensagem_sucesso; ?></p>
+            <?php endif; ?>
+
+            <?php if (isset($mensagem_erro)): ?>
+                <p class="mensagem-erro"><?php echo $mensagem_erro; ?></p>
+            <?php endif; ?>
+        </main>
+
+        <footer>
+            <p>Copyright &copy; 2025 Vitalis Clínica</p>
+        </footer>
+    </div>
+</body>
+</html>
