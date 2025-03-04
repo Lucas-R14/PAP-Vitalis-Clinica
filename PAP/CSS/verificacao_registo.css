@@ -1,0 +1,290 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #afd0f4;
+    color: white;
+    padding: 1rem;
+    height: 7rem;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('../images/clinica.jpeg'); 
+    backdrop-filter: blur(1.5px);
+    background-size: cover; 
+    background-position: center;
+    background-attachment: fixed; 
+    background-repeat: no-repeat;
+}
+
+main {
+    flex: 1; /* Faz o conteúdo crescer e empurrar o footer para baixo */
+    padding: 20px;
+}
+
+.img-header {
+    width: 80px; 
+    margin-left: 7rem;
+    float: left;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ocupa 100% da altura da tela */
+}
+
+.h1-header {
+    color: #292f7e;
+    padding-left: 1rem;
+    margin-top: 1.5rem;
+    font-family: sans-serif;
+    float: left;
+}
+
+.h1-body {
+    color: rgb(41, 47, 126);
+}
+
+.h2-body {
+    color: rgb(41, 47, 126);
+}
+
+.navbar {
+    text-decoration: none;
+    right: 3rem;
+    top: 3rem;
+    color: white;
+    position: fixed;
+}
+
+.btn-entrar {
+    text-decoration: none;
+    font-size: 17px;
+    background: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin: 2em;
+    padding: 1em 1.5em;
+    font-family: sans-serif;
+    color: rgb(41, 47, 126);
+    text-transform: uppercase;
+    position: relative;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+  
+.btn-entrar::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background-color: rgb(41, 47, 126);
+    transition: 0.5s ease;
+}
+  
+.btn-entrar:hover {
+    color: #1e1e2b;
+    transition-delay: 0.5s;
+}
+  
+.btn-entrar:hover::before {
+    width: 100%;
+}
+  
+.btn-entrar::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 0;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    transition: 0.4s ease;
+    z-index: -1;
+}
+  
+.btn-entrar:hover::after {
+    height: 100%;
+    transition-delay: 0.4s;
+    color: aliceblue;
+}
+
+.btn-cadastrar {
+    text-decoration: none;
+    font-size: 17px;
+    background: transparent;
+    border: none;
+    margin: 2em;
+    padding: 1em 1.5em;
+    font-family: sans-serif;
+    color: #292f7e;
+    text-transform: uppercase;
+    position: relative;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+  
+.btn-cadastrar::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background-color: #292f7e;
+    transition: 0.5s ease;
+}
+  
+.btn-cadastrar:hover {
+    color: #1e1e2b;
+    transition-delay: 0.5s;
+}
+  
+.btn-cadastrar:hover::before {
+    width: 100%;
+}
+  
+.btn-cadastrar::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 0;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    transition: 0.4s ease;
+    z-index: -1;
+}
+  
+.btn-cadastrar:hover::after {
+    height: 100%;
+    transition-delay: 0.4s;
+    color: aliceblue;
+}
+
+.footer {
+    background-color: #afd0f4;
+    color: #292f7e;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 5rem;
+    text-align: center;
+    justify-content: center;
+    vertical-align: middle;
+    padding: 2em 0;
+    margin-top: 2em;
+}
+
+/* Estilo para o container da caixa de verificação */
+.verificacao-container {
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo branco com transparência */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    max-width: 400px;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+/* Estilo para o título da caixa de verificação */
+.verificacao-container h2 {
+    color: #292f7e; /* Cor do tema */
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Estilo para o campo de entrada do código */
+.verificacao-container input[type="text"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #afd0f4; /* Cor do tema */
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #292f7e; /* Cor do tema */
+    margin-bottom: 1.5rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.verificacao-container input[type="text"]:focus {
+    border-color: #292f7e; /* Cor do tema */
+}
+
+/* Estilo para o botão de verificar */
+.verificacao-container button {
+    background-color: #292f7e; /* Cor do tema */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.verificacao-container button:hover {
+    background-color: #1e235a; /* Cor mais escura para o hover */
+    transform: translateY(-2px); /* Efeito de levantar */
+}
+
+.verificacao-container button:active {
+    transform: translateY(0); /* Efeito de pressionar */
+}
+
+/* Estilo para a mensagem de status */
+.verificacao-container .status-message {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #292f7e; /* Cor do tema */
+}
+
+/* Estilo para a mensagem de sucesso */
+.mensagem-sucesso {
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo branco com transparência */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    max-width: 400px;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.mensagem-sucesso h2 {
+    color: #292f7e; /* Cor do tema */
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Estilo para o botão de redirecionamento */
+.btn-redirecionar {
+    background-color: #292f7e; /* Cor do tema */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-redirecionar:hover {
+    background-color: #1e235a; /* Cor mais escura para o hover */
+    transform: translateY(-2px); /* Efeito de levantar */
+}
+
+.btn-redirecionar:active {
+    transform: translateY(0); /* Efeito de pressionar */
+}
