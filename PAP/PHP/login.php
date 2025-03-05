@@ -5,16 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cc = trim($_POST['cc']); // Cartão de Cidadão (cc)
     $senha_digitada = $_POST['senha']; // Senha digitada
 
-    // Conexão com o banco de dados
-    $host = "localhost";
-    $user = "root";
-    $password = "mysql";
-    $dbname = "vitalis_clinica";
-
-    $conn = new mysqli($host, $user, $password, $dbname);
-    if ($conn->connect_error) {
-        die("Falha na conexão com o banco de dados: " . $conn->connect_error);
-    }
+    require_once 'db_connect.php'; // Inclui a conexão
 
     // Busca o cliente no banco de dados pelo Cartão de Cidadão (cc)
     $sql = "SELECT id_cliente, nome, senha FROM Cliente WHERE cc = ?";

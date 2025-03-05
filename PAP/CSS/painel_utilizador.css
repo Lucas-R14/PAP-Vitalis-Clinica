@@ -2,7 +2,7 @@
 html, body {
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Evita rolagem horizontal */
+    overflow-x: hidden;
 }
 
 body {
@@ -25,9 +25,9 @@ body {
 }
 
 header {
-    background-color: rgba(175, 208, 244, 0.9); /* Fundo com transparência */
-    padding: 1rem 2rem; /* Aumente o padding horizontal */
-    height: 7rem; /* Aumente a altura do header */
+    background-color: rgba(175, 208, 244, 0.9);
+    padding: 1rem 2rem;
+    height: 7rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -35,7 +35,7 @@ header {
 }
 
 .img-header {
-    width: 80px; 
+    width: 80px;
     margin-left: 7rem;
     float: left;
 }
@@ -50,8 +50,8 @@ header {
 
 .navbar {
     display: flex;
-    gap: 40px; /* Aumente o espaçamento entre os botões */
-    margin-right: 5rem; /* Aumente a margem direita */
+    gap: 40px;
+    margin-right: 5rem;
 }
 
 /* Estilos para os botões dropdown */
@@ -63,12 +63,15 @@ header {
 .dropbtn {
     background-color: #292f7e;
     color: white;
-    padding: 1rem 2rem; /* Aumente o padding para tornar os botões maiores */
+    padding: 1rem 2rem;
     border: none;
     border-radius: 8px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -77,17 +80,30 @@ header {
     transform: translateY(-2px);
 }
 
-.dropbtn:active {
-    transform: translateY(0);
+.dropbtn.active {
+    background-color: #1a1f5c;
+}
+
+.dropbtn .arrow {
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+}
+
+.dropbtn.active .arrow {
+    transform: rotate(-135deg);
 }
 
 /* Estilos para o conteúdo dropdown */
 .dropdown-content {
     display: none;
     position: absolute;
-    right: 0; /* Alinha o dropdown à direita do botão */
-    background-color: rgba(255, 255, 255, 0.9);
-    min-width: 160px;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    min-width: 180px;
     border-radius: 8px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     z-index: 1;
@@ -96,34 +112,44 @@ header {
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown-content.show {
     display: block;
     opacity: 1;
     transform: translateY(0);
 }
 
-.dropdown-content a {
+/* Estilos para os itens do dropdown */
+.dropdown-item {
     color: #292f7e;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
     transition: background-color 0.3s ease, color 0.3s ease;
+    opacity: 0; /* Inicialmente invisível */
+    transform: translateY(-10px); /* Inicialmente deslocado para cima */
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.dropdown-content a:hover {
+.dropdown-item:hover {
     background-color: #292f7e;
     color: white;
     border-radius: 8px;
 }
 
+/* Estilos específicos para o botão de três pontos */
+.three-dots-btn .dots {
+    font-size: 24px;
+    line-height: 1;
+}
+
 /* Estilos para o quadrado de boas-vindas */
 .welcome-box {
-    background-color: rgba(255, 255, 255, 0.9); /* Fundo branco com transparência */
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 2rem;
     border-radius: 15px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     max-width: 600px;
-    margin: 100px auto; /* Aumente a margem superior */
+    margin: 100px auto;
     text-align: center;
 }
 
@@ -140,7 +166,7 @@ header {
 
 /* Estilos para o footer */
 .footer {
-    background-color: rgba(175, 208, 244, 0.9); /* Fundo com transparência */
+    background-color: rgba(175, 208, 244, 0.9);
     color: #292f7e;
     text-align: center;
     padding: 1rem 0;
@@ -148,31 +174,15 @@ header {
     box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Animações adicionais */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-main {
-    animation: fadeIn 0.5s ease;
-}
-
 /* Responsividade */
 @media (max-width: 768px) {
     .navbar {
-        gap: 20px; /* Reduza o gap em telas menores */
+        gap: 20px;
         margin-right: 1rem;
     }
 
     .dropbtn {
-        padding: 0.5rem 1rem;
+        padding: 0.8rem 1.2rem;
     }
 
     .img-header {

@@ -1,17 +1,9 @@
 <?php
 session_start();
-require 'gerarIdCliente.php'; // Inclui o arquivo com a função gerarIdCliente
 
-$host = "localhost";
-$user = "root";
-$password = "mysql";
-$dbname = "vitalis_clinica";
+require 'gerarIdCliente.php'; // inclui a função gerarIdCliente
 
-// Conexão com o banco de dados
-$conn = new mysqli($host, $user, $password, $dbname);
-if ($conn->connect_error) {
-    die("Falha na conexão com o banco de dados: " . $conn->connect_error);
-}
+require_once 'db_connect.php'; // Inclui a conexão
 
 // Mensagem de status para exibir após o envio
 $status_message = "";
@@ -181,34 +173,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $conn->close();
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-pt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resultado do Registo</title>
-    <link rel="stylesheet" href="../CSS/processar_registo.css">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <a href="../HTML/index.html"><img src="../images/logo_transparent.png" alt="" class="img-header"> </a>
-            <h1 class="h1-header"> Vitalis Clínica</h1>
-            <nav class="navbar">
-                <a class="btn-registar" href="registo.html">Registar-se</a>
-                <a class="btn-entrar" href="login.php">Entrar</a>
-            </nav>
-        </header>
-
-        <main class="main-content">
-            <h2><?php echo $status_message; ?></h2>
-            <a href="registo.html">Voltar ao formulário de registo</a>
-        </main>
-
-        <br><br><br><br>
-        <footer class="footer">
-            <p>Copyright &copy; 2025 Vitalis Clínica</p>
-        </footer>
-    </div>
-</body>
-</html>
+<?php include '../HTML/processar_registo.html'; ?>

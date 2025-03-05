@@ -14,19 +14,28 @@
             <img src="../images/logo_transparent.png" alt="" class="img-header">
             <h1 class="h1-header"> Vitalis Clínica</h1>
             <nav class="navbar">
+                <!-- Botão de Consulta -->
                 <div class="dropdown">
-                    <button class="dropbtn">Consulta</button>
-                    <div class="dropdown-content">
-                        <a href="../PHP/marcar_consulta.html">Marcar Consultas</a>
-                        <a href="../PHP/alterar_consulta.html">Alterar Consultas</a>
-                        <a href="../PHP/historico_consultas.html">Ver Histórico de Consultas</a>
+                    <button class="dropbtn consulta-btn">
+                        Consulta
+                        <i class="arrow"></i> <!-- Seta do dropdown -->
+                    </button>
+                    <div class="dropdown-content consulta-dropdown">
+                        <a href="../PHP/marcar_consulta.html" class="dropdown-item">Marcar Consultas</a>
+                        <a href="../PHP/alterar_consulta.html" class="dropdown-item">Alterar Consultas</a>
+                        <a href="../PHP/historico_consultas.html" class="dropdown-item">Ver Histórico de Consultas</a>
                     </div>
                 </div>
+
+                <!-- Botão de três pontos -->
                 <div class="dropdown">
-                    <button class="dropbtn">•••</button>
-                    <div class="dropdown-content">
-                        <a href="../PHP/conta.html">Conta</a>
-                        <a href="../PHP/logout.php">Logout</a>
+                    <button class="dropbtn three-dots-btn">
+                        <span class="dots">•••</span>
+                        <i class="arrow"></i> <!-- Seta do dropdown -->
+                    </button>
+                    <div class="dropdown-content three-dots-dropdown">
+                        <a href="../PHP/conta.html" class="dropdown-item">Conta</a>
+                        <a href="../PHP/logout.php" class="dropdown-item">Logout</a>
                     </div>
                 </div>
             </nav>
@@ -44,6 +53,9 @@
             <p>Copyright &copy; 2025 Vitalis Clínica</p>
         </footer>
     </div>
+
+    <!-- Referência ao arquivo JavaScript externo -->
+    <script src="../JS/painel_utilizador.js"></script>
 </body>
 
 </html>

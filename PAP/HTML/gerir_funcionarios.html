@@ -3,34 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerir Clientes</title>
-    <link rel="stylesheet" href="../CSS/gerir_clientes.css">
+    <title>Gerir Funcionários</title>
+    <link rel="stylesheet" href="../CSS/gerir_funcionarios.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Gerir Clientes</h1>
+            <h1>Gerir Funcionários</h1>
             <nav>
                 <a class="btn-voltar" href="painel_funcionario.php">Voltar</a>
             </nav>
         </header>
 
         <main>
-            <h2>Lista de Clientes</h2>
+            <h2>Lista de Funcionários</h2>
 
             <!-- Barra de busca -->
-            <form method="GET" action="../PHP/gerir_clientes.php" class="barra-busca">
+            <form method="GET" action="gerir_funcionarios.php" class="barra-busca">
                 <input type="text" name="busca" placeholder="Pesquisar por nome..." value="<?php echo htmlspecialchars($busca); ?>">
                 <button type="submit">Buscar</button>
             </form>
 
-            <!-- Tabela de clientes -->
+            <!-- Tabela de funcionários -->
             <table>
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
-                        <th>Nacionalidade</th>
                         <th>NIF</th>
                         <th>CC</th>
                         <th>Data de Nascimento</th>
@@ -38,16 +37,16 @@
                         <th>Telefone</th>
                         <th>Email</th>
                         <th>Endereço</th>
-                        <th>Data de Registo</th>
+                        <th>Data de Admissão</th>
+                        <th>Nível de Acesso</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php while ($row = $result->fetch_assoc()): ?>
                         <tr>
-                            <td><?php echo $row['id_cliente']; ?></td>
+                            <td><?php echo $row['id_funcionario']; ?></td>
                             <td><?php echo $row['nome']; ?></td>
-                            <td><?php echo $row['nacionalidade']; ?></td>
                             <td><?php echo $row['nif']; ?></td>
                             <td><?php echo $row['cc']; ?></td>
                             <td><?php echo $row['data_nascimento']; ?></td>
@@ -55,10 +54,15 @@
                             <td><?php echo $row['telefone']; ?></td>
                             <td><?php echo $row['email']; ?></td>
                             <td><?php echo $row['endereco']; ?></td>
-                            <td><?php echo $row['data_registo']; ?></td>
+                            <td><?php echo $row['data_admissao']; ?></td>
+                            <td><?php echo $row['nivel_acesso']; ?></td>
                             <td>
-                                <a href="editar_cliente.php?id=<?php echo $row['id_cliente']; ?>" class="btn-editar">Editar</a>
-                                <a href="../PHP/excluir_cliente.php?id=<?php echo $row['id_cliente']; ?>" class="btn-excluir">Excluir</a>
+                                <?php if ($row['nivel_acesso'] !== 'Administrador'): ?>
+                                    <a href="editar_funcionario.php?id=<?php echo $row['id_funcionario']; ?>" class="btn-editar">Editar</a>
+                                    <a href="excluir_funcionario.php?id=<?php echo $row['id_funcionario']; ?>" class="btn-excluir">Excluir</a>
+                                <?php else: ?>
+                                    <span class="sem-acoes">N/A</span>
+                                <?php endif; ?>
                             </td>
                         </tr>
                     <?php endwhile; ?>

@@ -1,20 +1,12 @@
 <?php
 session_start();
 
+require_once 'db_connect.php'; // Inclui a conexão
+
+// Verifica se o utilizador está logado e é um administrador
 if (!isset($_SESSION['logado']) || $_SESSION['tipo'] !== 'funcionario' || $_SESSION['nivel_acesso'] !== 'Administrador') {
     header("Location: ../HTML/login_funcionario.html");
     exit();
-}
-
-// Conexão com o banco de dados
-$host = "localhost";
-$user = "root";
-$password = "mysql";
-$dbname = "vitalis_clinica";
-
-$conn = new mysqli($host, $user, $password, $dbname);
-if ($conn->connect_error) {
-    die("Falha na conexão com o banco de dados: " . $conn->connect_error);
 }
 
 // Barra de busca
@@ -31,10 +23,8 @@ if (isset($_GET['busca'])) {
     $sql = "SELECT id_cliente, nome, nacionalidade, nif, cc, data_nascimento, sexo, telefone, email, endereco, data_registo FROM Cliente";
     $result = $conn->query($sql);
 }
-?>
 
-<?php include '../HTML/gerir_clientes.html'; ?>
+include '../HTML/gerir_clientes.html';
 
-<?php
 $conn->close();
 ?>

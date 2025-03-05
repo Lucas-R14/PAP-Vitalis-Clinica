@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excluir Cliente</title>
+    <link rel="stylesheet" href="../CSS/excluir_cliente.css"> 
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Excluir Cliente</h1>
+            <nav>
+                <a class="btn-voltar" href="gerir_clientes.php">Voltar</a>
+            </nav>
+        </header>
+
+        <main>
+            <?php if ($exclusao_sucesso): ?>
+                <!-- Mensagem de sucesso -->
+                <div class="mensagem-sucesso">
+                    <p>Cliente excluído com sucesso!</p>
+                    <p>Redirecionando para a página de gerir clientes...</p>
+                </div>
+
+                <!-- Redirecionamento após 2 segundos -->
+                <script>
+                    setTimeout(function() {
+                        window.location.href = "gerir_clientes.php";
+                    }, 2000);
+                </script>
+
+            <?php else: ?>
+                <!-- Confirmação de exclusão -->
+                <div class="caixa-confirmacao">
+                    <h2>Excluir Cliente</h2>
+                    <p>Tem certeza que deseja excluir o cliente <strong><?php echo $cliente['nome']; ?></strong>?</p>
+
+                    <?php if (isset($_POST['confirmar_exclusao'])): ?>
+                        <!-- Pedir senha do administrador -->
+                        <form method="POST" action="excluir_cliente.php?id=<?php echo $id_cliente; ?>">
+                            <div class="form-group">
+                                <label for="senha">Digite sua senha para confirmar a exclusão:</label>
+                                <input type="password" id="senha" name="senha" required>
+                            </div>
+
+                            <div class="botoes-confirmacao">
+                                <button type="submit" name="confirmar_exclusao" class="btn-confirmar">Confirmar Exclusão</button>
+                                <a href="gerir_clientes.php" class="btn-cancelar">Cancelar</a>
+                            </div>
+                        </form>
+                    <?php else: ?>
+                        <!-- Botões de confirmação inicial -->
+                        <form method="POST" action="excluir_cliente.php?id=<?php echo $id_cliente; ?>">
+                            <div class="botoes-confirmacao">
+                                <button type="submit" name="confirmar_exclusao" class="btn-confirmar">Confirmar Exclusão</button>
+                                <a href="gerir_clientes.php" class="btn-cancelar">Cancelar</a>
+                            </div>
+                        </form>
+                    <?php endif; ?>
+
+                    <?php if (!empty($mensagem_erro)): ?>
+                        <p class="mensagem-erro"><?php echo $mensagem_erro; ?></p>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
+        </main>
+
+        <footer>
+            <p>Copyright &copy; 2025 Vitalis Clínica</p>
+        </footer>
+    </div>
+</body>
+</html>

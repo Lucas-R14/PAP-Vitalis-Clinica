@@ -7,16 +7,8 @@ if (!isset($_SESSION['logado']) || $_SESSION['tipo'] !== 'funcionario' || $_SESS
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Conexão com o banco de dados
-    $host = "localhost";
-    $user = "root";
-    $password = "mysql";
-    $dbname = "vitalis_clinica";
-
-    $conn = new mysqli($host, $user, $password, $dbname);
-    if ($conn->connect_error) {
-        die("Falha na conexão com o banco de dados: " . $conn->connect_error);
-    }
+    
+    require_once 'db_connect.php'; // Inclui a conexão
 
     // Dados do formulário
     $nome = $_POST['nome'];

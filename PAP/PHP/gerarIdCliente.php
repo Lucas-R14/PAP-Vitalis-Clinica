@@ -1,5 +1,4 @@
 <?php
-// funcoes.php
 
 function gerarIdCliente($conn) {
     $caracteres = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';

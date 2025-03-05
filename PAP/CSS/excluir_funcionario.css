@@ -1,0 +1,212 @@
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('../images/clinica.jpeg');
+    backdrop-filter: blur(1.5px);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: #333;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: rgba(175, 208, 244, 0.9);
+    padding: 1rem 2rem;
+    height: 7rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    color: #292f7e;
+    margin: 0;
+}
+
+.btn-voltar {
+    background-color: #292f7e;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-voltar:hover {
+    background-color: #1a1f5c;
+    transform: translateY(-2px);
+}
+
+.btn-voltar:active {
+    transform: translateY(0);
+}
+
+main {
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.caixa-confirmacao {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+}
+
+.caixa-confirmacao h2 {
+    color: #292f7e;
+    font-size: 24px;
+    margin-bottom: 1.5rem;
+}
+
+.caixa-confirmacao p {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    padding-right: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #292f7e;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: #292f7e;
+    outline: none;
+    box-shadow: 0 0 8px rgba(41, 47, 126, 0.3);
+}
+
+.botoes-confirmacao {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    justify-content: center;
+}
+
+.btn-confirmar {
+    background-color: #dc3545; /* Vermelho */
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-confirmar:hover {
+    background-color: #c82333; /* Vermelho mais escuro */
+    transform: translateY(-2px);
+}
+
+.btn-confirmar:active {
+    transform: translateY(0);
+}
+
+.btn-cancelar {
+    background-color: #6c757d; /* Cinza */
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-cancelar:hover {
+    background-color: #5a6268; /* Cinza mais escuro */
+    transform: translateY(-2px);
+}
+
+.btn-cancelar:active {
+    transform: translateY(0);
+}
+
+.mensagem-sucesso {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: green;
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 2rem auto;
+    max-width: 600px;
+}
+
+.mensagem-erro {
+    color: #dc3545;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+footer {
+    background-color: rgba(175, 208, 244, 0.9);
+    color: #292f7e;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: auto;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para o link "Cancelar" */
+.btn-cancelar {
+    background-color: #6c757d; /* Cinza */
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-cancelar:hover {
+    background-color: #5a6268; /* Cinza mais escuro */
+    transform: translateY(-2px);
+}
+
+.btn-cancelar:active {
+    transform: translateY(0);
+}
