@@ -59,8 +59,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'vitalis.clinica25@gmail.com';
-        $mail->Password = 'bjau vskr fwus kssp';
+        $mail->Username = 'insiraemail@gmail.com'; //inserir o email para utilização
+        $mail->Password = 'password'; //chave de acesso do email
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
