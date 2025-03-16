@@ -42,7 +42,7 @@ Before starting, make sure you have the following installed on your system:
 4. Go to the **Import** tab.
 5. Click **Choose File** and select the SQL file located in your project folder:
    ```
-   database/vitalis_clinic.sql
+   database/vitalis_clinica.sql
    ```
 6. Click **Go** to execute the import.
 
