@@ -1,11 +1,11 @@
 <?php
 session_start();
 
-require 'gerarIdCliente.php'; // inclui a função gerarIdCliente
-
+require 'gerarIdCliente.php'; // Inclui a função gerarIdCliente
 require_once 'db_connect.php'; // Inclui a conexão
+require 'email.php'; // Inclui a função de envio de e-mail
 
-
+// Mensagem de status para exibir após o envio
 $status_message = "";
 
 // Função para gerar um código de verificação de 6 dígitos
@@ -24,15 +24,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sexo = $_POST['sexo'];
     $telefone = $_POST['telefone'];
     $email = $_POST['email'];
-    $endereco = $_POST['endereco'];
-    $senha = $_POST['senha']; // Campo do formulário
-    $confirmar_senha = $_POST['confirmar_senha']; // Campo do formulário
     $historico_medico = $_POST['historico_medico'];
+    $senha = $_POST['senha'];
+    $confirmar_senha = $_POST['confirmar_senha'];
 
     // Verifica se as senhas coincidem
     if ($senha !== $confirmar_senha) {
         $status_message = "Erro: As senhas não coincidem.";
     } else {
+        // Concatena os campos do endereço antes de armazenar
+        $morada = $_POST['morada'];
+        $apartamento = isset($_POST['apartamento']) ? $_POST['apartamento'] : "";
+        $codigo_postal = $_POST['codigo_postal'];
+        $distrito = $_POST['distrito'];
+        $concelho = $_POST['concelho'];
+
+        // Formatação do endereço completo
+        $endereco = trim("$morada, " . ($apartamento ? "$apartamento, " : "") . "$codigo_postal, $distrito, $concelho");
+
         // Gera um código de verificação
         $codigo_verificacao = gerarCodigoVerificacao();
 
@@ -47,124 +56,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'telefone' => $telefone,
             'email' => $email,
             'endereco' => $endereco,
-            'senha' => $senha, // Mapeia para o campo "senha" na base de dados
+            'senha' => $senha,
             'historico_medico' => $historico_medico
         ];
         $_SESSION['codigo_verificacao'] = $codigo_verificacao;
 
-        // Envia o e-mail de verificação
-        require '../vendor/autoload.php';
+        // Chama a função de envio de e-mail
+        $emailEnviado = enviarEmailVerificacao($email, $nome, $codigo_verificacao);
 
-        $mail = new PHPMailer\PHPMailer\PHPMailer();
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = 'insiraemail@gmail.com'; //inserir o email para utilização
-        $mail->Password = 'password'; //chave de acesso do email
-        $mail->SMTPSecure = 'tls';
-        $mail->Port = 587;
-
-        $mail->CharSet = 'UTF-8'; 
-        $mail->setFrom('email@gmail.com ', 'nome'); //inserir o email e o nome
-        $mail->addAddress($email, $nome);
-
-        $mail->isHTML(true); // Permite o uso de HTML no e-mail
-        $mail->Subject = 'Confirmação de Cadastro - Vitalis Clínica';
-
-        // Extrai o primeiro e o último nome
-        $nomes = explode(' ', $nome); // Divide o nome completo em partes
-        $primeiro_nome = $nomes[0]; // Primeiro nome
-        $ultimo_nome = end($nomes); // Último nome
-
-        // Corpo do e-mail em HTML
-        $mail->Body = '
-        <!DOCTYPE html>
-        <html lang="pt-pt">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Confirmação de Registo</title>
-            <style>
-                body {
-                    font-family: Arial, sans-serif;
-                    background-color: #f4f4f4;
-                    color: #333;
-                    margin: 0;
-                    padding: 0;
-                }
-                .email-container {
-                    max-width: 600px;
-                    margin: 0 auto;
-                    padding: 20px;
-                    background-color: #fff;
-                    border-radius: 10px;
-                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-                }
-                .email-header {
-                    text-align: center;
-                    padding-bottom: 20px;
-                    border-bottom: 1px solid #ddd;
-                }
-                .email-header h1 {
-                    color: #292f7e;
-                    font-size: 24px;
-                    margin: 0;
-                }
-                .email-body {
-                    padding: 20px 0;
-                }
-                .email-body p {
-                    font-size: 16px;
-                    line-height: 1.6;
-                }
-                .email-footer {
-                    text-align: center;
-                    padding-top: 20px;
-                    border-top: 1px solid #ddd;
-                    font-size: 14px;
-                    color: #777;
-                }
-                .codigo-verificacao {
-                    font-size: 24px;
-                    font-weight: bold;
-                    color: #292f7e;
-                    text-align: center;
-                    margin: 20px 0;
-                    padding: 10px;
-                    background-color: #f0f4ff;
-                    border-radius: 5px;
-                }
-            </style>
-        </head>
-        <body>
-            <div class="email-container">
-                <div class="email-header">
-                    <h1>Vitalis Clínica</h1>
-                </div>
-                <div class="email-body">
-                    <p>Olá, <strong>' . $primeiro_nome . ' ' . $ultimo_nome . '</strong>!</p>
-                    <p>Obrigado por se registar na <strong>Vitalis Clínica</strong>.</p>
-                    <p>Seu código de verificação é:</p>
-                    <div class="codigo-verificacao">' . $codigo_verificacao . '</div>
-                    <p>Por favor, insira esse código na página de confirmação para concluir seu registo.</p>
-                </div>
-                <div class="email-footer">
-                    <p>Atenciosamente,</p>
-                    <p><strong>Equipe Vitalis Clínica</strong></p>
-                </div>
-            </div>
-        </body>
-        </html>
-        ';
-
-        // Corpo alternativo para clientes de e-mail que não suportam HTML
-        $mail->AltBody = "Olá, $primeiro_nome $ultimo_nome!\n\nObrigado por se cadastrar na Vitalis Clínica.\n\nSeu código de verificação é: $codigo_verificacao\n\nPor favor, insira esse código na página de confirmação para concluir seu cadastro.\n\nAtenciosamente,\nEquipe Vitalis Clínica";
-
-        if ($mail->send()) {
+        if ($emailEnviado === true) {
             header("Location: ../PHP/verificacao_registo.php");
             exit();
         } else {
-            $status_message = "Erro ao enviar o e-mail de verificação: " . $mail->ErrorInfo;
+            $status_message = $emailEnviado; // Exibe a mensagem de erro do envio de e-mail
         }
     }
 }
