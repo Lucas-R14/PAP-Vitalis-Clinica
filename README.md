@@ -74,7 +74,7 @@ Before starting, make sure you have the following installed on your system:
    ```
 
 #### 6️⃣ Configure PHPMailer
-In the email configuration file (`config/email.php` or similar), set up your SMTP credentials:
+In the email configuration file (`php/email.php` or similar), set up your SMTP credentials:
 ```php
 $mail->isSMTP();
 $mail->Host = 'smtp.yourdomain.com';
