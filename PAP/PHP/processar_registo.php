@@ -5,7 +5,7 @@ require 'gerarIdCliente.php'; // inclui a função gerarIdCliente
 
 require_once 'db_connect.php'; // Inclui a conexão
 
-// Mensagem de status para exibir após o envio
+
 $status_message = "";
 
 // Função para gerar um código de verificação de 6 dígitos
@@ -47,13 +47,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'telefone' => $telefone,
             'email' => $email,
             'endereco' => $endereco,
-            'senha' => $senha, // Mapeia para o campo "senha" no banco de dados
+            'senha' => $senha, // Mapeia para o campo "senha" na base de dados
             'historico_medico' => $historico_medico
         ];
         $_SESSION['codigo_verificacao'] = $codigo_verificacao;
 
         // Envia o e-mail de verificação
-        require '../vendor/autoload.php'; // Carrega o PHPMailer
+        require '../vendor/autoload.php';
 
         $mail = new PHPMailer\PHPMailer\PHPMailer();
         $mail->isSMTP();
@@ -64,8 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
-        $mail->CharSet = 'UTF-8'; // Define o charset para UTF-8
-        $mail->setFrom('vitalis.clinica25@gmail.com', 'Vitalis Clínica');
+        $mail->CharSet = 'UTF-8'; 
+        $mail->setFrom('email@gmail.com ', 'nome'); //inserir o email e o nome
         $mail->addAddress($email, $nome);
 
         $mail->isHTML(true); // Permite o uso de HTML no e-mail
