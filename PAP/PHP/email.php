@@ -9,11 +9,11 @@ function enviarEmailVerificacao($email, $nome, $codigo_verificacao) {
 
     try {
         $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
+        $mail->Host = 'smtp.yourdomain.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'vitalis.clinica25@gmail.com';
-        $mail->Password = 'bjau vskr fwus kssp';
-        $mail->SMTPSecure = 'tls';
+        $mail->Username = 'youremail@yourdomain.com';
+        $mail->Password = 'yourpassword';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
         $mail->CharSet = 'UTF-8';
