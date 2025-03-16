@@ -47,13 +47,13 @@ Before starting, make sure you have the following installed on your system:
 6. Click **Go** to execute the import.
 
 #### 4️⃣ Configure the Database Connection
-1. Open the project configuration file (`config.php` or `.env`).
-2. Update the database credentials as needed:
-   ```php
-   define('DB_HOST', 'localhost');
-   define('DB_USER', 'root');
-   define('DB_PASS', '');
-   define('DB_NAME', 'vitalis_clinica');
+1. In the project root directory, create a new file named `.env`.
+2. Add the following content to the `.env` file:
+   ```
+   DB_HOST=localhost
+   DB_USER=root
+   DB_PASSWORD=mysql
+   DB_NAME=vitalis_clinica
    ```
 
 #### 5️⃣ Install Composer and Dependencies
