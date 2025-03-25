@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Conta - Vitalis</title>
+    <link rel="stylesheet" href="../CSS/conta_cliente.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <a href="../HTML/index.html"><img src="../images/logo_transparent.png" alt="Logo Vitalis" class="img-header"></a>
+            </div>
+            
+            <div class="title-container">
+                <h1 class="h1-header">Vitalis Clínica</h1>
+            </div>
+
+            <nav class="navbar">
+                <!-- Botão Voltar -->
+                <div class="dropdown">
+                    <a href="../PHP/painel_cliente.php" class="dropbtn consulta-btn">
+                        <i class="arrow"></i>
+                        Voltar
+                    </a>
+                </div>
+
+                <!-- Botão de Menu -->
+                <div class="dropdown">
+                    <button class="dropbtn three-dots-btn">
+                        <span class="dots">•••</span>
+                        <i class="arrow"></i>
+                    </button>
+                    <div class="dropdown-content three-dots-dropdown">
+                        <a href="../PHP/logout.php" class="dropdown-item">Terminar Sessão</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <div class="conta-box">
+                <h2>Minha Conta</h2>
+                <div class="dados-pessoais">
+                    <!-- Informações de Identificação -->
+                    <div class="info-section">
+                        <h3>Identificação</h3>
+                        <div class="info-grupo">
+                            <p><strong>ID Cliente:</strong> <span><?php echo $cliente['id_cliente']; ?></span></p>
+                            <p><strong>Nome:</strong> <span><?php echo $cliente['nome']; ?></span></p>
+                            <p><strong>Nacionalidade:</strong> <span><?php echo $cliente['nacionalidade']; ?></span></p>
+                            <p><strong>NIF:</strong> <span><?php echo $cliente['nif']; ?></span></p>
+                            <p><strong>CC:</strong> <span><?php echo $cliente['cc']; ?></span></p>
+                            <p><strong>Data de Nascimento:</strong> <span><?php echo date('d/m/Y', strtotime($cliente['data_nascimento'])); ?></span></p>
+                            <p><strong>Sexo:</strong> <span><?php echo $cliente['sexo']; ?></span></p>
+                        </div>
+                    </div>
+
+                    <!-- Informações de Contacto -->
+                    <div class="info-section">
+                        <h3>Contactos</h3>
+                        <div class="info-grupo">
+                            <p><strong>Telefone:</strong> <span><?php echo $cliente['telefone']; ?></span></p>
+                            <p><strong>Email:</strong> <span><?php echo $cliente['email']; ?></span></p>
+                            <p><strong>Endereço:</strong> <span><?php echo $cliente['endereco']; ?></span></p>
+                        </div>
+                    </div>
+
+                    <!-- Informações Adicionais -->
+                    <div class="info-section">
+                        <h3>Informações Adicionais</h3>
+                        <div class="info-grupo">
+                            <p><strong>Data de Registo:</strong> <span><?php echo date('d/m/Y', strtotime($cliente['data_registo'])); ?></span></p>
+                            <div class="historico-medico">
+                                <strong>Histórico Médico:</strong>
+                                <div class="historico-texto">
+                                    <?php echo nl2br($cliente['historico_medico']); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botões de Ação -->
+                    <div class="botoes-acao">
+                        <button class="btn-editar" id="btnEditarDados">Editar Dados Pessoais</button>
+                        <button class="btn-editar" id="btnAlterarSenha">Alterar Senha</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 Vitalis Clínica</p>
+        </footer>
+    </div>
+
+    <!-- Modal Editar Dados -->
+    <div id="modalEditarDados" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Editar Dados Pessoais</h2>
+            
+            <form id="formEditarDados">
+                <div class="form-columns">
+                    <div class="form-column">
+                        <div class="form-group">
+                            <label for="editNome">Nome:</label>
+                            <input type="text" id="editNome" value="<?php echo $cliente['nome']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="editNacionalidade">Nacionalidade:</label>
+                            <input type="text" id="editNacionalidade" value="<?php echo $cliente['nacionalidade']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="editTelefone">Telefone:</label>
+                            <input type="tel" id="editTelefone" value="<?php echo $cliente['telefone']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="editEmail">Email:</label>
+                            <input type="email" id="editEmail" value="<?php echo $cliente['email']; ?>">
+                        </div>
+                    </div>
+                    <div class="form-column">
+                        <div class="form-group">
+                            <label for="editEndereco">Endereço:</label>
+                            <textarea id="editEndereco"><?php echo $cliente['endereco']; ?></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="editHistoricoMedico">Histórico Médico:</label>
+                            <textarea id="editHistoricoMedico"><?php echo $cliente['historico_medico']; ?></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group senha-confirmacao">
+                    <label for="senhaAtual">Senha Atual:</label>
+                    <input type="password" id="senhaAtual" placeholder="Digite sua senha atual">
+                    <span class="erro-senha" id="erroSenhaAtual"></span>
+                </div>
+                
+                <button type="submit" class="btn-confirmar">Guardar Alterações</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Alterar Senha -->
+    <div id="modalAlterarSenha" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Alterar Senha</h2>
+            
+            <form id="formAlterarSenha">
+                <div class="form-group">
+                    <label for="senhaAtualAlt">Senha Atual:</label>
+                    <input type="password" id="senhaAtualAlt" placeholder="Digite sua senha atual">
+                </div>
+                <div class="form-group">
+                    <label for="novaSenha">Nova Senha:</label>
+                    <input type="password" id="novaSenha" placeholder="Digite a nova senha">
+                </div>
+                <div class="form-group">
+                    <label for="confirmarSenha">Confirmar Nova Senha:</label>
+                    <input type="password" id="confirmarSenha" placeholder="Confirme a nova senha">
+                </div>
+                <span class="erro-senha" id="erroAlterarSenha"></span>
+                <button type="submit" class="btn-confirmar">Alterar Senha</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../JS/conta_cliente.js"></script>
+</body>
+</html> 

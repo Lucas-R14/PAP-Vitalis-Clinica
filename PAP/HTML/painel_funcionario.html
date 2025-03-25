@@ -4,16 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel do Funcionário</title>
+    <title>Painel do Funcionário - Vitalis Clínica</title>
     <link rel="stylesheet" href="../CSS/painel_funcionario.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <header>
-            <img src="../images/logo_transparent.png" alt="" class="img-header">
-            <h1 class="h1-header"> Vitalis Clínica</h1>
+            <div class="logo-container">
+                <a href="../HTML/index.html">
+                    <img src="../images/logo_transparent.png" alt="Logo Vitalis" class="img-header">
+                </a>
+            </div>
+            
+            <div class="title-container">
+                <h1 class="h1-header">Vitalis Clínica</h1>
+            </div>
+
             <nav class="navbar">
-                <a class="btn-sair" href="../PHP/logout.php">Sair</a>
+                <div class="dropdown">
+                    <button class="dropbtn three-dots-btn">
+                        <span class="dots">•••</span>
+                        <i class="arrow"></i>
+                    </button>
+                    <div class="dropdown-content three-dots-dropdown">
+                        <a href="../PHP/perfil_funcionario.php" class="dropdown-item">Meu Perfil</a>
+                        <a href="../PHP/logout.php" class="dropdown-item">Terminar Sessão</a>
+                    </div>
+                </div>
             </nav>
         </header>
 
@@ -60,5 +78,7 @@
             <p>Copyright &copy; 2025 Vitalis Clínica</p>
         </footer>
     </div>
+
+    <script src="../JS/painel_funcionario.js"></script>
 </body>
 </html>
