@@ -6,9 +6,14 @@ if (!isset($_SESSION['logado']) || $_SESSION['tipo'] !== 'funcionario' || $_SESS
     exit();
 }
 
+$criacao_sucesso = false; // Variável para controlar se a criação foi bem-sucedida
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-    require_once 'db_connect.php'; // Inclui a conexão
+    require_once 'db_connect.php'; // Conexão com o banco de dados
+    require_once 'gerarIdFuncionario.php'; // Gera ID único
+
+    // Gera um ID único
+    $id_funcionario = gerarIdFuncionario($conn);
 
     // Dados do formulário
     $nome = $_POST['nome'];
@@ -18,17 +23,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sexo = $_POST['sexo'];
     $telefone = $_POST['telefone'];
     $email = $_POST['email'];
-    $endereco = $_POST['endereco'];
-    $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT); // Encripta a senha
+    $morada = $_POST['morada'];
+    $apartamento = $_POST['apartamento'];
+    $codigo_postal = $_POST['codigo_postal'];
+    $distrito = $_POST['distrito'];
+    $concelho = $_POST['concelho'];
+    $cargo = $_POST['cargo'];
+    $especialidade = $_POST['especialidade']; // NOVO CAMPO
+    $inicio_turno = $_POST['inicio_turno'];   // NOVO CAMPO
+    $fim_turno = $_POST['fim_turno'];         // NOVO CAMPO
+    $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT); 
     $nivel_acesso = $_POST['nivel_acesso'];
+    $data_admissao = date("Y-m-d"); 
+    $estado = 'Ativo';
 
-    // Inserir novo funcionário
-    $sql = "INSERT INTO Funcionario (nome, nif, cc, data_nascimento, sexo, telefone, email, endereco, senha, nivel_acesso) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    // Concatena endereço
+    $endereco = "$morada, " . ($apartamento ? "$apartamento, " : "") . "$codigo_postal, $distrito, $concelho";
+
+    // Inserção no banco (removido o campo "departamento")
+    $sql = "INSERT INTO funcionario (id_funcionario, nome, nif, cc, data_nascimento, sexo, telefone, email, endereco, cargo, especialidade, inicio_turno, fim_turno, senha, nivel_acesso, data_admissao, estado) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssssssssss", $nome, $nif, $cc, $data_nascimento, $sexo, $telefone, $email, $endereco, $senha, $nivel_acesso);
+    $stmt->bind_param("sssssssssssssssss", $id_funcionario, $nome, $nif, $cc, $data_nascimento, $sexo, $telefone, $email, $endereco, $cargo, $especialidade, $inicio_turno, $fim_turno, $senha, $nivel_acesso, $data_admissao, $estado);
 
     if ($stmt->execute()) {
-        $mensagem_sucesso = "Funcionário adicionado com sucesso!";
+        $criacao_sucesso = true;
     } else {
         $mensagem_erro = "Erro ao adicionar funcionário: " . $stmt->error;
     }
@@ -36,6 +56,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
     $conn->close();
 }
-?>
 
-<?php include '../HTML/criar_funcionarios'; ?>
+include '../HTML/criar_funcionarios.html';
+?>

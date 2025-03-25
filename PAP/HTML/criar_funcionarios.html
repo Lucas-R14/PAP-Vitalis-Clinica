@@ -3,68 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criar Contas de Funcionários</title>
-    <link rel="stylesheet" href="../CSS/painel_funcionario.css">
+    <title>Criar Funcionário</title>
+    <link rel="stylesheet" href="../CSS/criar_funcionarios.css">
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
     <div class="container">
         <header>
             <h1>Criar Contas de Funcionários</h1>
             <nav>
-                <a class="btn-sair" href="../PHP/painel_funcionario.php">Voltar</a>
+                <a class="btn-voltar" href="painel_funcionario.php">Voltar</a>
             </nav>
         </header>
 
         <main>
-            <h2>Adicionar Novo Funcionário</h2>
-            <form method="POST" action="criar_contas.php">
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" required>
+            <?php if (isset($criacao_sucesso) && $criacao_sucesso): ?>
+                <!-- Mensagem de sucesso -->
+                <div class="mensagem-sucesso">
+                    <p>Funcionário criado com sucesso!</p>
+                    <p>Redirecionando para o painel do funcionário...</p>
+                </div>
 
-                <label for="nif">NIF:</label>
-                <input type="text" id="nif" name="nif" required maxlength="9">
+                <!-- Redirecionamento após 2 segundos -->
+                <script>
+                    setTimeout(function() {
+                        window.location.href = 'painel_funcionario.php';
+                    }, 2000);
+                </script>
 
-                <label for="cc">Cartão de Cidadão:</label>
-                <input type="text" id="cc" name="cc" required maxlength="12">
+            <?php else: ?>
+                <!-- Formulário de criação -->
+                <section class="form-section">
+                    <h2>Adicionar Novo Funcionário</h2>
 
-                <label for="data_nascimento">Data de Nascimento:</label>
-                <input type="date" id="data_nascimento" name="data_nascimento" required>
+                    <?php if (isset($mensagem_erro) && !empty($mensagem_erro)): ?>
+                        <p class="mensagem-erro"><?php echo $mensagem_erro; ?></p>
+                    <?php endif; ?>
 
-                <label for="sexo">Sexo:</label>
-                <select id="sexo" name="sexo" required>
-                    <option value="Masculino">Masculino</option>
-                    <option value="Feminino">Feminino</option>
-                    <option value="Outro">Outro</option>
-                </select>
+                    <form id="criarFuncionarioForm" method="POST" action="criar_funcionarios.php">
+                        <!-- Campos do formulário -->
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" name="nome" required>
 
-                <label for="telefone">Telefone:</label>
-                <input type="text" id="telefone" name="telefone" required maxlength="15">
+                        <label for="nif">NIF:</label>
+                        <input type="text" id="nif" name="nif" required maxlength="9">
 
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                        <label for="cc">Cartão de Cidadão:</label>
+                        <input type="text" id="cc" name="cc" required maxlength="12">
 
-                <label for="endereco">Endereço:</label>
-                <input type="text" id="endereco" name="endereco" required>
+                        <label for="data_nascimento">Data de Nascimento:</label>
+                        <input type="text" id="data_nascimento" name="data_nascimento" required placeholder="Selecione a data">
 
-                <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="senha" required>
+                        <label for="sexo">Sexo:</label>
+                        <select id="sexo" name="sexo" required>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Feminino">Feminino</option>
+                        </select>
 
-                <label for="nivel_acesso">Nível de Acesso:</label>
-                <select id="nivel_acesso" name="nivel_acesso" required>
-                    <option value="Administrador">Administrador</option>
-                    <option value="Médico">Médico</option>
-                    <option value="Funcionário">Funcionário</option>
-                </select>
+                        <label for="telefone">Telefone:</label>
+                        <input type="text" id="telefone" name="telefone" required maxlength="15">
 
-                <button type="submit">Adicionar Funcionário</button>
-            </form>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
 
-            <?php if (isset($mensagem_sucesso)): ?>
-                <p class="mensagem-sucesso"><?php echo $mensagem_sucesso; ?></p>
-            <?php endif; ?>
+                        <!-- Campos de endereço separados -->
+                        <label for="morada">Morada:</label>
+                        <input type="text" id="morada" name="morada" required>
 
-            <?php if (isset($mensagem_erro)): ?>
-                <p class="mensagem-erro"><?php echo $mensagem_erro; ?></p>
+                        <label for="apartamento">Apartamento/Piso/etc (Opcional):</label>
+                        <input type="text" id="apartamento" name="apartamento">
+
+                        <label for="codigo_postal">Código Postal:</label>
+                        <input type="text" id="codigo_postal" name="codigo_postal" required pattern="\d{4}-\d{3}" placeholder="1234-567">
+
+                        <label for="distrito">Distrito:</label>
+                        <input type="text" id="distrito" name="distrito" required>
+
+                        <label for="concelho">Concelho:</label>
+                        <input type="text" id="concelho" name="concelho" required>
+
+                        <label for="cargo">Cargo:</label>
+                        <select id="cargo" name="cargo" required>
+                            <option value="Médico">Médico</option>
+                            <option value="Enfermeiro">Enfermeiro</option>
+                            <option value="Rececionista">Rececionista</option>
+                            <option value="Técnico de enfermagem">Técnico de enfermagem</option>
+                            <option value="Administrador">Administrador</option>
+                        </select>
+
+                        <label for="especialidade">Especialidade:</label>
+                        <input type="text" id="especialidade" name="especialidade" placeholder="se for médico, indique sua especialidade">
+
+                        <!-- Horários de Turno -->
+                        <label for="inicio_turno">Início do Turno:</label>
+                        <input type="time" id="inicio_turno" name="inicio_turno" required>
+
+                        <label for="fim_turno">Fim do Turno:</label>
+                        <input type="time" id="fim_turno" name="fim_turno" required>
+
+                        <label for="senha">Senha:</label>
+                        <input type="password" id="senha" name="senha" required minlength="6">
+
+                        <label for="confirmar_senha">Confirmar Senha:</label>
+                        <input type="password" id="confirmar_senha" name="confirmar_senha" required minlength="6">
+
+                        <p id="erroSenha" class="mensagem-erro" style="display: none;">As senhas não coincidem!</p>
+                        <p id="erroSenhaComprimento" class="mensagem-erro" style="display: none;">A senha deve ter no mínimo 6 caracteres!</p>
+
+                        <label for="nivel_acesso">Nível de Acesso:</label>
+                        <select id="nivel_acesso" name="nivel_acesso" required>
+                            <option value="Administrador">Administrador</option>
+                            <option value="Medico">Médico</option>
+                            <option value="Funcionario">Funcionário</option>
+                        </select>
+
+                        <button type="submit">Adicionar Funcionário</button>
+                    </form>
+                </section>
             <?php endif; ?>
         </main>
 
@@ -72,5 +128,10 @@
             <p>Copyright &copy; 2025 Vitalis Clínica</p>
         </footer>
     </div>
+
+    <!-- Scripts do Flatpickr -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pt.js"></script>
+    <script src="../JS/criar_funcionarios.js"></script>
 </body>
 </html>

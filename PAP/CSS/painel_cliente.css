@@ -1,0 +1,431 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos gerais */
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('../images/clinica.jpeg');
+    backdrop-filter: blur(1.5px);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: #333;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: rgba(175, 208, 244, 0.9);
+    padding: 1rem 2rem;
+    height: 7rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    width: 33.33%;
+}
+
+.img-header {
+    width: 80px;
+    margin-left: 2rem;
+}
+
+.title-container {
+    width: 33.33%;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.h1-header {
+    color: #292f7e;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: flex;
+    gap: 20px;
+    width: 33.33%;
+    justify-content: flex-end;
+    margin-right: 2rem;
+}
+
+/* Estilos para os botões */
+.dropbtn {
+    background: linear-gradient(135deg, #292f7e, #1a1f5c);
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dropbtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #1a1f5c, #292f7e);
+}
+
+.dropbtn .arrow {
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+}
+
+.dropbtn.active .arrow {
+    transform: rotate(-135deg);
+}
+
+/* Estilos para o conteúdo dropdown */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.95);
+    min-width: 220px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+/* Posicionamento específico para o dropdown de três pontos */
+.three-dots-dropdown {
+    right: 0;
+    transform: translateX(0);
+}
+
+/* Ajuste para garantir que o dropdown de três pontos não fique cortado */
+.dropdown:last-child .dropdown-content {
+    right: 10px;
+}
+
+.dropdown-content.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    color: #292f7e;
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    border-radius: 8px;
+    margin: 4px;
+}
+
+.dropdown-item:hover {
+    background: linear-gradient(135deg, #292f7e, #1a1f5c);
+    color: white;
+    transform: translateX(5px);
+}
+
+/* Estilos para o botão de três pontos */
+.three-dots-btn {
+    padding: 1rem;
+    min-width: 50px;
+}
+
+.three-dots-btn .dots {
+    font-size: 24px;
+    line-height: 1;
+}
+
+/* Estilos para o quadrado de boas-vindas */
+.welcome-box {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 100px auto;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.welcome-box h2 {
+    color: #292f7e;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+.welcome-box h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, #292f7e, #6478FF);
+    border-radius: 2px;
+}
+
+.welcome-box p {
+    color: #555;
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+/* Estilos para a seção de consultas */
+.consultas-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    width: 95%;
+    max-width: 1500px;
+    margin: 2rem auto;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.consultas-container h2 {
+    color: #292f7e;
+    font-size: 2rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+.consultas-container h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, #292f7e, #6478FF);
+    border-radius: 2px;
+}
+
+.consultas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.consulta-card {
+    background: linear-gradient(145deg, #ffffff, #f5f7ff);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(41, 47, 126, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.consulta-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, #292f7e, #6478FF);
+    border-radius: 4px 0 0 4px;
+}
+
+.consulta-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.consulta-data {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #292f7e;
+    margin-bottom: 0.5rem;
+}
+
+.consulta-hora {
+    font-size: 1.1rem;
+    color: #6478FF;
+    margin-bottom: 1.2rem;
+    padding: 0.4rem 0.8rem;
+    background: rgba(100, 120, 255, 0.1);
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.consulta-tipo {
+    font-size: 1rem;
+    color: #292f7e;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.consulta-medico {
+    font-size: 1rem;
+    color: #555;
+    padding-top: 0.8rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 0.5rem;
+}
+
+.sem-consultas {
+    grid-column: 1 / -1;
+    color: #666;
+    font-size: 1.2rem;
+    padding: 3rem;
+    background: linear-gradient(145deg, #ffffff, #f5f7ff);
+    border-radius: 16px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(41, 47, 126, 0.1);
+}
+
+/* Footer */
+.footer {
+    background-color: rgba(175, 208, 244, 0.9);
+    color: #292f7e;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: auto;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+    .consultas-container {
+        width: 98%;
+        padding: 2rem;
+    }
+
+    .consultas-grid {
+        gap: 1.5rem;
+    }
+
+    .img-header {
+        margin-left: 1rem;
+    }
+
+    .navbar {
+        margin-right: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 1rem;
+    }
+
+    .logo-container {
+        width: 25%;
+    }
+
+    .title-container {
+        width: 40%;
+    }
+
+    .h1-header {
+        font-size: 1.5rem;
+    }
+
+    .navbar {
+        width: 35%;
+        gap: 10px;
+        margin-right: 10px;
+    }
+
+    .img-header {
+        width: 60px;
+        margin-left: 0.5rem;
+    }
+
+    .dropbtn {
+        padding: 0.8rem 1.2rem;
+        font-size: 14px;
+    }
+
+    .welcome-box {
+        margin: 20px auto;
+        padding: 2rem;
+    }
+
+    .welcome-box h2 {
+        font-size: 1.8rem;
+    }
+
+    .welcome-box p {
+        font-size: 1rem;
+    }
+
+    .consultas-container {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+
+    .consultas-container h2 {
+        font-size: 1.6rem;
+    }
+
+    .consulta-card {
+        padding: 1.5rem;
+    }
+
+    .dropdown:last-child .dropdown-content {
+        right: 5px;
+    }
+
+    .dropdown-content {
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dropdown-content {
+        min-width: 180px;
+    }
+
+    .dropdown:last-child .dropdown-content {
+        right: 0;
+    }
+}

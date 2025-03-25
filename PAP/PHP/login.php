@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['logado'] = true;
             $_SESSION['id_cliente'] = $row['id_cliente'];
             $_SESSION['nome_cliente'] = $row['nome'];
-            header("Location: painel_utilizador.php"); // Redireciona para o painel
+            header("Location: painel_cliente.php"); // Redireciona para o painel
             exit();
         } else {
             $mensagem_erro = "Senha incorreta!";

@@ -4,29 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Funcionário</title>
-    <link rel="stylesheet" href="../CSS/login.css">
+    <title>Login Funcionário - Vitalis Clínica</title>
+    <link rel="stylesheet" href="../CSS/login_funcionario.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div class="container">
         <header>
-            <a href="index.html"><img src="../images/logo_transparent.png" alt="" class="img-header"> </a>
-            <h1 class="h1-header"> Vitalis Clínica</h1>
+            <div class="logo-container">
+                <a href="../HTML/index.html"><img src="../images/logo_transparent.png" alt="Logo" class="img-header"></a>
+            </div>
+            
+            <div class="title-container">
+                <h1 class="h1-header">Vitalis Clínica</h1>
+            </div>
+
             <nav class="navbar">
-                <a class="btn-cadastrar" href="../HTML/registo.html">Registar-se</a>
-                <a class="btn-entrar" href="../HTML/login_funcionario.html">Entrar</a>
+                <a class="btn-registar" href="../HTML/registo.html">Registar-se</a>
+                <a class="btn-entrar" href="../PHP/login.php">Entrar</a>
             </nav>
         </header>
 
         <main>
             <div class="login-container">
-                <h2>Login Funcionário</h2>
+                <h2>Área do Funcionário</h2>
                 <form method="POST" action="../PHP/login_funcionario.php">
-                    <label for="cc">Cartão de Cidadão:</label>
-                    <input type="text" id="cc" name="cc" required>
+                    <label for="cc">Cartão de Cidadão ou Passaporte</label>
+                    <input type="text" id="cc" name="cc" required maxlength="9">
 
-                    <label for="senha">Senha:</label>
+                    <label for="senha">Senha</label>
                     <input type="password" id="senha" name="senha" required>
 
                     <button type="submit">Entrar</button>
@@ -34,12 +41,12 @@
                 <?php if (isset($mensagem_erro)): ?>
                     <p class="mensagem-erro"><?php echo $mensagem_erro; ?></p>
                 <?php endif; ?>
-                <br>
-                <p>Não tem uma conta? <a href="registo.html">Registre-se aqui</a></p>
+
+                <p>Ainda não tem uma conta? <a href="../HTML/registo.html">Registe-se aqui</a></p>
+                <p>É um cliente? <a href="../PHP/login.php">Entrar aqui</a></p>
             </div>
         </main>
 
-        <br><br><br><br>
         <footer class="footer">
             <p>Copyright &copy; 2025 Vitalis Clínica</p>
         </footer>

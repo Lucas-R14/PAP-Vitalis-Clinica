@@ -1,87 +1,135 @@
 <!DOCTYPE html>
 <html lang="pt-pt">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registo</title>
     <link rel="stylesheet" href="../CSS/registo.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
-
 <body>
     <div class="container">
         <header>
-            <a href="index.html"><img src="../images/logo_transparent.png" alt="Logo" class="img-header"> </a>
-            <h1 class="h1-header"> Vitalis Clínica</h1>
+            <div class="logo-container">
+                <a href="index.html"><img src="../images/logo_transparent.png" alt="Logo" class="img-header"></a>
+            </div>
+            
+            <div class="title-container">
+                <h1 class="h1-header">Vitalis Clínica</h1>
+            </div>
+
             <nav class="navbar">
-                <a class="btn-registar" href="../HTML/registo.html">Registar-se</a>
+                <a class="btn-cadastrar" href="../HTML/registo.html">Registar-se</a>
                 <a class="btn-entrar" href="../HTML/login.html">Entrar</a>
             </nav>
         </header>
 
         <main>
+            
             <form id="registoForm" action="../PHP/processar_registo.php" method="POST">
                 <div class="registo-section">
-                    <h2 class="h2-body">Registo de Cliente</h2>
-
-                    <!-- Campos do formulário -->
+                    <h2>Registo de Cliente</h2>
+                    
                     <label for="nome">Nome Completo:</label>
                     <input type="text" id="nome" name="nome" required>
 
-                    <label for="nacionalidade">Nacionalidade:</label>
-                    <input type="text" id="nacionalidade" name="nacionalidade" required>
+                    <div class="form-grid">
+                        <div>
+                            <label for="nacionalidade">Nacionalidade:</label>
+                            <select id="nacionalidade" name="nacionalidade" required>
+                                <option value="" selected disabled>Selecione sua nacionalidade</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="data_nascimento">Data de Nascimento:</label>
+                            <input type="text" id="data_nascimento" name="data_nascimento" required placeholder="Selecione a data">
+                        </div>
+                    </div>
 
-                    <label for="nif">NIF:</label>
-                    <input type="text" id="nif" name="nif" required maxlength="9">
+                    <div class="form-grid">
+                        <div>
+                            <label for="nif">NIF:</label>
+                            <input type="text" id="nif" name="nif" required maxlength="9">
+                        </div>
+                        
+                        <div>
+                            <label for="cc">Cartão de Cidadão/Passaporte:</label>
+                            <input type="text" id="cc" name="cc" required maxlength="9">
+                        </div>
+                    </div>
 
-                    <label for="cc">Cartão de Cidadão:</label>
-                    <input type="text" id="cc" name="cc" required maxlength="12">
-
-                    <label for="data_nascimento">Data de Nascimento:</label>
-                    <input type="date" id="data_nascimento" name="data_nascimento" required>
-
-                    <label for="sexo">Sexo:</label>
-                    <select id="sexo" name="sexo" required>
-                        <option value="Masculino">Masculino</option>
-                        <option value="Feminino">Feminino</option>
-                        <option value="Outro">Outro</option>
-                    </select>
-
-                    <label for="telefone">Telefone:</label>
-                    <input type="text" id="telefone" name="telefone" required>
+                    <div class="form-grid">
+                        <div>
+                            <label for="telefone">Telefone:</label>
+                            <input type="text" id="telefone" name="telefone" required maxlength="9">
+                        </div>
+                        
+                        <div>
+                            <label for="sexo">Sexo:</label>
+                            <select id="sexo" name="sexo" required>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Feminino">Feminino</option>
+                            </select>
+                        </div>
+                    </div>
 
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email" required>
 
-                    <label for="endereco">Endereço:</label>
-                    <input type="text" id="endereco" name="endereco" required>
+                    <label for="morada">Morada:</label>
+                    <input type="text" id="morada" name="morada" required>
 
-                    <label for="senha">Senha:</label>
-                    <input type="password" id="senha" name="senha" required>
+                    <label for="apartamento">Apartamento/Piso/etc (Opcional):</label>
+                    <input type="text" id="apartamento" name="apartamento">
 
-                    <label for="confirmar_senha">Confirmar Senha:</label>
-                    <input type="password" id="confirmar_senha" name="confirmar_senha" required>
+                    <div class="form-grid">
+                        <div>
+                            <label for="codigo_postal">Código Postal:</label>
+                            <input type="text" id="codigo_postal" name="codigo_postal" required pattern="\d{4}-\d{3}" placeholder="1234-567">
+                        </div>
+                        
+                        <div>
+                            <label for="distrito">Distrito:</label>
+                            <input type="text" id="distrito" name="distrito" required>
+                        </div>
+                    </div>
 
-                    <!-- Mensagem de erro para senhas não coincidentes -->
+                    <label for="concelho">Concelho:</label>
+                    <input type="text" id="concelho" name="concelho" required>
+
+                    <div class="form-grid">
+                        <div>
+                            <label for="senha">Senha:</label>
+                            <input type="password" id="senha" name="senha" required minlength="6">
+                        </div>
+                        
+                        <div>
+                            <label for="confirmar_senha">Confirmar Senha:</label>
+                            <input type="password" id="confirmar_senha" name="confirmar_senha" required minlength="6">
+                        </div>
+                    </div>
+                    
                     <p id="erroSenha" class="mensagem-erro">As senhas não coincidem!</p>
+                    <p id="erroSenhaComprimento" class="mensagem-erro">A senha deve ter no mínimo 6 caracteres!</p>
 
                     <label for="historico_medico">Histórico Médico:</label>
                     <textarea id="historico_medico" name="historico_medico" rows="4"></textarea>
 
-                    <!-- Botão de envio -->
                     <button type="submit">Registar</button>
                 </div>
             </form>
         </main>
 
-        <br><br><br><br>
         <footer class="footer">
             <p>Copyright &copy; 2025 Vitalis Clínica</p>
         </footer>
     </div>
 
-    <!-- Incluindo o arquivo JavaScript externo -->
     <script src="../JS/registo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pt.js"></script>
 </body>
-
 </html>

@@ -4,29 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Login - Vitalis Clínica</title>
     <link rel="stylesheet" href="../CSS/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div class="container">
         <header>
-            <a href="index.html"><img src="../images/logo_transparent.png" alt="" class="img-header"> </a>
-            <h1 class="h1-header"> Vitalis Clínica</h1>
+            <div class="logo-container">
+                <a href="../HTML/index.html"><img src="../images/logo_transparent.png" alt="Logo" class="img-header"></a>
+            </div>
+            
+            <div class="title-container">
+                <h1 class="h1-header">Vitalis Clínica</h1>
+            </div>
+
             <nav class="navbar">
-                <a class="btn-cadastrar" href="../HTML/registo.html">Registar-se</a>
-                <a class="btn-entrar" href="../HTML/login.html">Entrar</a>
+                <a class="btn-registar" href="../HTML/registo.html">Registar-se</a>
+                <a class="btn-entrar" href="../PHP/login.php">Entrar</a>
             </nav>
         </header>
 
         <main>
             <div class="login-container">
-                <h2>Login</h2>
+                <h2>Bem-vindo de volta</h2>
                 <form method="POST" action="../PHP/login.php">
-                    <label for="cc">Cartão de Cidadão:</label>
+                    <label for="cc">Cartão de Cidadão ou Passaporte</label>
                     <input type="text" id="cc" name="cc" required>
 
-                    <label for="senha">Senha:</label>
+                    <label for="senha">Senha</label>
                     <input type="password" id="senha" name="senha" required>
 
                     <button type="submit">Entrar</button>
@@ -34,15 +41,12 @@
                 <?php if (isset($mensagem_erro)): ?>
                     <p class="mensagem-erro"><?php echo $mensagem_erro; ?></p>
                 <?php endif; ?>
-                <br>
-                <p>Não tem uma conta? <a href="registo.html">Registe-se aqui</a></p>
-                <br>
-                <!-- Link para o login de funcionários -->
-                <p>É um funcionário? <a href="../HTML/login_funcionario.html">Entrar aqui</a></p>
+
+                <p>Ainda não tem uma conta? <a href="../HTML/registo.html">Registe-se aqui</a></p>
+                <p>É um funcionário? <a href="../PHP/login_funcionario.php">Entrar aqui</a></p>
             </div>
         </main>
 
-        <br><br><br><br>
         <footer class="footer">
             <p>Copyright &copy; 2025 Vitalis Clínica</p>
         </footer>

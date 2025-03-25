@@ -14,14 +14,14 @@ $busca = "";
 // Verifica se há uma busca
 if (isset($_GET['busca'])) {
     $busca = $_GET['busca'];
-    $sql = "SELECT id_funcionario, nome, nif, cc, data_nascimento, sexo, telefone, email, endereco, data_admissao, nivel_acesso FROM Funcionario WHERE nome LIKE ?";
+    $sql = "SELECT id_funcionario, nome, nif, cc, data_nascimento, sexo, telefone, email, endereco, data_admissao, nivel_acesso, especialidade, inicio_turno, fim_turno, cargo, estado FROM Funcionario WHERE nome LIKE ?";
     $stmt = $conn->prepare($sql);
     $busca_param = "%$busca%";
     $stmt->bind_param("s", $busca_param);
     $stmt->execute();
     $result = $stmt->get_result();
 } else {
-    $sql = "SELECT id_funcionario, nome, nif, cc, data_nascimento, sexo, telefone, email, endereco, data_admissao, nivel_acesso FROM Funcionario";
+    $sql = "SELECT id_funcionario, nome, nif, cc, data_nascimento, sexo, telefone, email, endereco, data_admissao, nivel_acesso, especialidade, inicio_turno, fim_turno, cargo, estado FROM Funcionario";
     $result = $conn->query($sql);
 }
 ?>

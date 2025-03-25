@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alterar Consulta</title>
+    <link rel="stylesheet" href="../CSS/alterar_consulta.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <a href="../HTML/index.html"><img src="../images/logo_transparent.png" alt="Logo Vitalis" class="img-header"></a>
+            </div>
+            
+            <div class="title-container">
+                <h1 class="h1-header">Vitalis Clínica</h1>
+            </div>
+
+            <nav class="navbar">
+                <a href="../PHP/painel_cliente.php" class="btn-voltar">
+                    <i class="arrow"></i>
+                    Voltar
+                </a>
+
+                <!-- Botão de Menu -->
+                <div class="dropdown">
+                    <button class="dropbtn three-dots-btn">
+                        <span class="dots">•••</span>
+                        <i class="arrow"></i>
+                    </button>
+                    <div class="dropdown-content three-dots-dropdown">
+                        <a href="../PHP/conta.html" class="dropdown-item">Minha Conta</a>
+                        <a href="../PHP/logout.php" class="dropdown-item">Terminar Sessão</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <div class="agendamento-box">
+                <h2>Consultas Agendadas</h2>
+                <div id="consultas-list">
+                    <?php if (count($consultas) > 0): ?>
+                        <?php foreach ($consultas as $consulta): ?>
+                            <div class="consulta-item">
+                                <p><strong>Data:</strong> <?= date('d/m/Y', strtotime($consulta['data_consulta'])) ?></p>
+                                <p><strong>Hora:</strong> <?= date('H:i', strtotime($consulta['hora_consulta'])) ?></p>
+                                <p><strong>Médico:</strong> <?= $consulta['nome_medico'] ?></p>
+                                <p><strong>Tipo:</strong> <?= $consulta['tipo_consulta'] ?></p>
+                                <div class="consulta-botoes">
+                                    <button class="btn-alterar" data-id="<?= $consulta['id_consulta'] ?>" data-medico="<?= $consulta['id_funcionario'] ?>">Alterar</button>
+                                    <button class="btn-cancelar" data-id="<?= $consulta['id_consulta'] ?>">Cancelar</button>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p>Nenhuma consulta agendada.</p>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 Vitalis Clínica</p>
+        </footer>
+    </div>
+
+    <div id="modalSenha" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Confirmação de Cancelamento</h2>
+            
+            <div class="info-consulta">
+                <h3>Atenção</h3>
+                <p>Esta ação não pode ser desfeita. Por favor, confirme sua senha para prosseguir com o cancelamento.</p>
+            </div>
+
+            <div class="separador"></div>
+
+            <div class="form-group">
+                <label for="senhaInput">Digite sua senha:</label>
+                <input type="password" id="senhaInput" placeholder="Digite sua senha">
+                <span class="erro-senha" id="erroSenhaCancelamento"></span>
+            </div>
+
+            <button id="confirmarCancelamento" class="btn-cancelar-modal">Confirmar Cancelamento</button>
+        </div>
+    </div>
+
+    <div id="modalAlterar" class="modal">
+        <div class="modal-content">
+            <span class="close-button-alterar">&times;</span>
+            <h2>Alterar Consulta</h2>
+            
+            <!-- Informações atuais da consulta -->
+            <div class="info-consulta">
+                <h3>Informações da Consulta</h3>
+                <p><strong>Médico:</strong> <span id="medicoNome"></span></p>
+                <p><strong>Especialidade:</strong> <span id="tipoConsulta"></span></p>
+                <p><strong>Data Atual:</strong> <span id="dataAtual"></span></p>
+                <p><strong>Hora Atual:</strong> <span id="horaAtual"></span></p>
+            </div>
+
+            <div class="separador"></div>
+
+            <!-- Campos de alteração -->
+            <div class="form-group">
+                <label for="dataAlteracao">Nova Data:</label>
+                <input type="text" id="dataAlteracao" placeholder="Selecione a data">
+            </div>
+            <div class="form-group">
+                <label for="horarioAlteracao">Novo Horário:</label>
+                <select id="horarioAlteracao">
+                    <option value="">Selecione um horário</option>
+                </select>
+            </div>
+
+            <div class="separador"></div>
+
+            <!-- Campo de senha para confirmação -->
+            <div class="form-group">
+                <label for="senhaAlteracao">Confirme sua senha:</label>
+                <input type="password" id="senhaAlteracao" placeholder="Digite sua senha">
+                <span class="erro-senha" id="erroSenhaAlteracao"></span>
+            </div>
+
+            <button id="confirmarAlteracao">Confirmar Alteração</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pt.js"></script>
+    <script src="../JS/alterar_consulta.js"></script>
+</body>
+</html>

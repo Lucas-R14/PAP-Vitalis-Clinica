@@ -24,55 +24,70 @@
                 <button type="submit">Buscar</button>
             </form>
 
-            <!-- Tabela de funcionários -->
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>NIF</th>
-                        <th>CC</th>
-                        <th>Data de Nascimento</th>
-                        <th>Sexo</th>
-                        <th>Telefone</th>
-                        <th>Email</th>
-                        <th>Endereço</th>
-                        <th>Data de Admissão</th>
-                        <th>Nível de Acesso</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php while ($row = $result->fetch_assoc()): ?>
+            <!-- Contêiner da tabela com scroll horizontal -->
+            <div class="table-container">
+                <table>
+                    <thead>
                         <tr>
-                            <td><?php echo $row['id_funcionario']; ?></td>
-                            <td><?php echo $row['nome']; ?></td>
-                            <td><?php echo $row['nif']; ?></td>
-                            <td><?php echo $row['cc']; ?></td>
-                            <td><?php echo $row['data_nascimento']; ?></td>
-                            <td><?php echo $row['sexo']; ?></td>
-                            <td><?php echo $row['telefone']; ?></td>
-                            <td><?php echo $row['email']; ?></td>
-                            <td><?php echo $row['endereco']; ?></td>
-                            <td><?php echo $row['data_admissao']; ?></td>
-                            <td><?php echo $row['nivel_acesso']; ?></td>
-                            <td>
-                                <?php if ($row['nivel_acesso'] !== 'Administrador'): ?>
-                                    <a href="editar_funcionario.php?id=<?php echo $row['id_funcionario']; ?>" class="btn-editar">Editar</a>
-                                    <a href="excluir_funcionario.php?id=<?php echo $row['id_funcionario']; ?>" class="btn-excluir">Excluir</a>
-                                <?php else: ?>
-                                    <span class="sem-acoes">N/A</span>
-                                <?php endif; ?>
-                            </td>
+                            <th data-column="id_funcionario">ID</th>
+                            <th data-column="nome">Nome</th>
+                            <th data-column="nif">NIF</th>
+                            <th data-column="cc">CC</th>
+                            <th data-column="data_nascimento">Data de Nascimento</th>
+                            <th data-column="sexo">Sexo</th>
+                            <th data-column="telefone">Telefone</th>
+                            <th data-column="email">Email</th>
+                            <th data-column="endereco">Endereço</th>
+                            <th data-column="data_admissao">Data de Admissão</th>
+                            <th data-column="nivel_acesso">Nível de Acesso</th>
+                            <th data-column="especialidade">Especialidade</th>
+                            <th data-column="inicio_turno">Início do Turno</th>
+                            <th data-column="fim_turno">Fim do Turno</th>
+                            <th data-column="cargo">Cargo</th>
+                            <th data-column="estado">Estado</th> <!-- Nova coluna Estado -->
+                            <th>Ações</th>
                         </tr>
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php while ($row = $result->fetch_assoc()): ?>
+                            <tr>
+                                <td><?php echo $row['id_funcionario']; ?></td>
+                                <td><?php echo $row['nome']; ?></td>
+                                <td><?php echo $row['nif']; ?></td>
+                                <td><?php echo $row['cc']; ?></td>
+                                <td><?php echo $row['data_nascimento']; ?></td>
+                                <td><?php echo $row['sexo']; ?></td>
+                                <td><?php echo $row['telefone']; ?></td>
+                                <td><?php echo $row['email']; ?></td>
+                                <td><?php echo $row['endereco']; ?></td>
+                                <td><?php echo $row['data_admissao']; ?></td>
+                                <td><?php echo $row['nivel_acesso']; ?></td>
+                                <td><?php echo $row['especialidade']; ?></td>
+                                <td><?php echo $row['inicio_turno']; ?></td>
+                                <td><?php echo $row['fim_turno']; ?></td>
+                                <td><?php echo $row['cargo']; ?></td>
+                                <td><?php echo $row['estado']; ?></td> <!-- Exibição do estado -->
+                                <td>
+                                    <?php if ($row['nivel_acesso'] !== 'Administrador'): ?>
+                                        <div class="acoes-botoes">
+                                            <a href="editar_funcionario.php?id=<?php echo $row['id_funcionario']; ?>" class="btn-editar">Editar</a>
+                                            <a href="excluir_funcionario.php?id=<?php echo $row['id_funcionario']; ?>" class="btn-excluir">Excluir</a>
+                                        </div>
+                                    <?php else: ?>
+                                        <span class="sem-acoes">N/A</span>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
         </main>
 
         <footer>
             <p>Copyright &copy; 2025 Vitalis Clínica</p>
         </footer>
     </div>
+    <script src="../JS/gerir_funcionarios.js"></script>
 </body>
 </html>

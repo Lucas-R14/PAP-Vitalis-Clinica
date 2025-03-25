@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcar Consulta - Vitalis Clínica</title>
+    <link rel="stylesheet" href="../CSS/marcar_consulta.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <a href="../HTML/index.html"><img src="../images/logo_transparent.png" alt="Logo Vitalis" class="img-header"></a>
+            </div>
+            
+            <div class="title-container">
+                <h1 class="h1-header">Vitalis Clínica</h1>
+            </div>
+
+            <nav class="navbar">
+                <a href="../PHP/painel_cliente.php" class="btn-voltar">
+                    <i class="arrow"></i>
+                    Voltar
+                </a>
+
+                <!-- Botão de Menu -->
+                <div class="dropdown">
+                    <button class="dropbtn three-dots-btn">
+                        <span class="dots">•••</span>
+                        <i class="arrow"></i>
+                    </button>
+                    <div class="dropdown-content three-dots-dropdown">
+                        <a href="../PHP/conta.html" class="dropdown-item">Minha Conta</a>
+                        <a href="../PHP/logout.php" class="dropdown-item">Terminar Sessão</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <?php if ($limite_atingido): ?>
+                <div class="agendamento-box">
+                    <div class="limite-consultas">
+                        <h2>Limite de Consultas Atingido</h2>
+                        <p>Você já possui 4 consultas agendadas, que é o número máximo permitido.</p>
+                        <p>Para agendar uma nova consulta, aguarde a realização ou cancele uma das consultas existentes.</p>
+                        <a href="../PHP/painel_cliente.php" class="btn-voltar-painel">Voltar ao Painel</a>
+                    </div>
+                </div>
+            <?php else: ?>
+                <div class="agendamento-box">
+                    <h2>Marcar Consulta</h2>
+                    <form id="form-agendamento" method="POST" action="marcar_consulta.php">
+                        <div class="form-group">
+                            <label for="especialidade">Especialidade:</label>
+                            <select id="especialidade" name="especialidade" required>
+                                <option value="">Selecione uma especialidade</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="medico">Médico:</label>
+                            <select id="medico" name="medico" required disabled>
+                                <option value="">Selecione um médico</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="data">Data:</label>
+                            <input type="text" id="data" name="data" placeholder="Selecione a data" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="horario">Horário:</label>
+                            <select id="horario" name="horario" required disabled>
+                                <option value="">Selecione um horário</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn-agendar">Agendar Consulta</button>
+                    </form>
+                </div>
+            <?php endif; ?>
+        </main>
+
+        <!-- Modal de Confirmação com Senha -->
+        <div id="modalConfirmacao" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2>Confirmar Agendamento</h2>
+                
+                <!-- Informações da consulta -->
+                <div class="info-consulta">
+                    <h3>Detalhes da Consulta</h3>
+                    <p><strong>Especialidade:</strong> <span id="especialidadeConfirm"></span></p>
+                    <p><strong>Médico:</strong> <span id="medicoConfirm"></span></p>
+                    <p><strong>Data:</strong> <span id="dataConfirm"></span></p>
+                    <p><strong>Hora:</strong> <span id="horaConfirm"></span></p>
+                </div>
+
+                <div class="separador"></div>
+
+                <!-- Campo de senha para confirmação -->
+                <div class="form-group">
+                    <label for="senhaConfirmacao">Confirme sua senha:</label>
+                    <input type="password" id="senhaConfirmacao" placeholder="Digite sua senha">
+                    <span class="erro-senha" id="erroSenhaConfirmacao"></span>
+                </div>
+
+                <button id="confirmarAgendamento" class="btn-agendar">Confirmar Agendamento</button>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>Copyright &copy; 2025 Vitalis Clínica</p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pt.js"></script>
+    <script src="../JS/marcar_consulta.js"></script>
+</body>
+</html>

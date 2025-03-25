@@ -2,240 +2,294 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
-header {
-    background-color: #afd0f4;
-    color: white;
-    padding: 1rem;
-    height: 7rem;
-}
-
-body{
+body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background-image: url('../images/clinica.jpeg'); 
-    backdrop-filter: blur(1.5px);
-    background-size: cover; 
+    background-image: url('../images/clinica.jpeg');
+    background-size: cover;
     background-position: center;
-    background-attachment: fixed; 
+    background-attachment: fixed;
     background-repeat: no-repeat;
-}
-
-main {
-    flex: 1; /* Faz o conteúdo crescer e empurrar o footer para baixo */
-    padding: 20px;
-}
-
-.img-header {
-    width: 80px; 
-    margin-left: 7rem;
-    float: left;
-}
-
-.img-infobox {
-    display: block; /* Garante que a imagem fique em linha separada */
-    margin: 10px auto 0 auto; /* Centraliza horizontalmente */
-    max-width: 150px; /* Controla o tamanho máximo da imagem */
-    height: auto; /* Mantém a proporção */
+    color: #333;
+    min-height: 100vh;
 }
 
 .container {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Ocupa 100% da altura da tela */
+    min-height: 100vh;
 }
 
-.h1-header{
+/* Header Styles */
+header {
+    background-color: rgba(175, 208, 244, 0.95);
+    padding: 1rem 2rem;
+    height: 7rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    width: 33.33%;
+}
+
+.img-header {
+    width: 80px;
+    margin-left: 2rem;
+}
+
+.title-container {
+    width: 33.33%;
+    text-align: center;
+}
+
+.h1-header {
     color: #292f7e;
-    padding-left: 1rem;
-    margin-top: 1.5rem;
-    font-family: sans-serif;
-    float: left;
-}
-
-.h1-body{
-    color: rgb(41, 47, 126);
-}
-
-.h2-body{
-    color: rgb(41, 47, 126);
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0;
 }
 
 .navbar {
-    text-decoration: none;
-    right: 3rem;
-    top: 3rem;
-    color: white;
-    position: fixed;
+    display: flex;
+    gap: 20px;
+    width: 33.33%;
+    justify-content: flex-end;
+    margin-right: 2rem;
 }
 
-.center-title {
-    display: flex;               
-    justify-content: center;     
-    align-items: center;     
-    height: 4rem;                
-    margin-bottom: 1em;         
-    background-color: white;
+/* Hero Section */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/clinica.jpeg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 0 20px;
+    margin-bottom: 0;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.hero-btn {
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.hero-btn.primary {
+    background-color: #292f7e;
+    color: white;
+}
+
+.hero-btn.secondary {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.hero-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Botões de Login/Registo */
+.btn-entrar, .btn-registar {
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    color: #292f7e;
 }
 
 .btn-entrar {
-    text-decoration: none;
-    font-size: 17px;
-    background: white;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    margin: 2em;
-    padding: 1em 1.5em;
-    font-family: sans-serif;
-    color: rgb(41, 47, 126);
-    text-transform: uppercase;
-    position: relative;
-    transition: 0.5s ease;
-    cursor: pointer;
-}
-  
-.btn-entrar::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 2px;
-    width: 0;
-    background-color: rgb(41, 47, 126);
-    transition: 0.5s ease;
-}
-  
-.btn-entrar:hover {
-    color: #1e1e2b;
-    transition-delay: 0.5s;
-}
-  
-.btn-entrar:hover::before {
-    width: 100%;
-}
-  
-.btn-entrar::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 0;
-    width: 100%;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    transition: 0.4s ease;
-    z-index: -1;
-}
-  
-.btn-entrar:hover::after {
-    height: 100%;
-    transition-delay: 0.4s;
-    color: aliceblue;
+    background-color: white;
 }
 
-.btn-cadastrar {
-    text-decoration: none;
-    font-size: 17px;
-    background: transparent;
-    border: none;
-    margin: 2em;
-    padding: 1em 1.5em;
-    font-family: sans-serif;
-    color: #292f7e;
-    text-transform: uppercase;
-    position: relative;
-    transition: 0.5s ease;
-    cursor: pointer;
-}
-  
-.btn-cadastrar::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 2px;
-    width: 0;
-    background-color: #292f7e;
-    transition: 0.5s ease;
-}
-  
-.btn-cadastrar:hover {
-    color: #1e1e2b;
-    transition-delay: 0.5s;
-}
-  
-.btn-cadastrar:hover::before {
-    width: 100%;
-}
-  
-.btn-cadastrar::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 0;
-    width: 100%;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    transition: 0.4s ease;
-    z-index: -1;
-}
-  
-.btn-cadastrar:hover::after {
-    height: 100%;
-    transition-delay: 0.4s;
-    color: aliceblue;
+.btn-registar {
+    background-color: transparent;
+    border: 2px solid #292f7e;
 }
 
-.footer {
-    background-color: #afd0f4;
-    color: #292f7e;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 5rem;
-    text-align: center;
-    justify-content: center;
-    vertical-align: middle;
-    padding: 2em 0;
-    margin-top: 2em;
+.btn-entrar:hover, .btn-registar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
+/* Main Content */
 .main-content {
-    padding: 2em;
-    display: flex;
-    justify-content: center;
+    padding: 4rem 2rem;
+    background-color: rgba(255, 255, 255, 0.95);
+    position: relative;
+    margin-top: 0;
 }
 
-.about-section {
+.section-title {
+    text-align: center;
+    color: #292f7e;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(to right, #292f7e, #6478FF);
+    border-radius: 2px;
+}
+
+.info-boxes {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Duas colunas */
-    gap: 3em; /* Espaçamento entre os blocos */
-    max-width: 900px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
     margin: 0 auto;
-    align-items: stretch; /* Faz todas as caixas terem a mesma altura */
 }
 
 .info-box {
-    background: rgba(212, 212, 212, 0.8);
-    backdrop-filter: blur(3px);
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 1.5em;
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
     text-align: center;
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    width: 100%;
-    min-height: 250px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .info-box:hover {
-    transform: scale(1.05); /* Aumenta proporcionalmente */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    z-index: 2;
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.icon-container {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-infobox {
+    max-width: 100%;
+    height: auto;
+}
+
+.info-box h3 {
+    color: #292f7e;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.info-box p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Footer */
+.footer {
+    background-color: rgba(175, 208, 244, 0.95);
+    color: #292f7e;
+    padding: 2rem 0;
+    text-align: center;
+    margin-top: auto;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 1rem;
+    }
+
+    .logo-container {
+        width: 25%;
+    }
+
+    .title-container {
+        width: 40%;
+    }
+
+    .h1-header {
+        font-size: 1.5rem;
+    }
+
+    .navbar {
+        width: 35%;
+        gap: 10px;
+        margin-right: 0.5rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .info-boxes {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+    }
 }

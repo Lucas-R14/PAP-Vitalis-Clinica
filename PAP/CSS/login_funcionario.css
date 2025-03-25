@@ -25,13 +25,13 @@ body {
 
 /* Header Styles */
 header {
-    background-color: rgba(175, 208, 244, 0.95);
+    background-color: rgba(41, 47, 126, 0.95); /* Cor mais escura para diferenciar */
     padding: 1rem 2rem;
     height: 7rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     position: fixed;
     width: 100%;
     top: 0;
@@ -47,6 +47,7 @@ header {
 .img-header {
     width: 80px;
     margin-left: 2rem;
+    filter: brightness(0) invert(1); /* Logo em branco */
 }
 
 .title-container {
@@ -55,7 +56,7 @@ header {
 }
 
 .h1-header {
-    color: #292f7e;
+    color: white; /* Texto em branco */
     font-size: 2rem;
     font-weight: 600;
     margin: 0;
@@ -69,29 +70,30 @@ header {
     margin-right: 2rem;
 }
 
-/* Botões de Login/Registro */
-.btn-entrar, .btn-cadastrar {
+/* Botões de Login/Registo */
+.btn-entrar, .btn-registar {
     text-decoration: none;
     font-size: 1rem;
     padding: 0.8rem 1.5rem;
     border-radius: 50px;
     font-weight: 500;
     transition: all 0.3s ease;
-    color: #292f7e;
 }
 
 .btn-entrar {
     background-color: white;
+    color: #292f7e;
 }
 
-.btn-cadastrar {
+.btn-registar {
     background-color: transparent;
-    border: 2px solid #292f7e;
+    border: 2px solid white;
+    color: white;
 }
 
-.btn-entrar:hover, .btn-cadastrar:hover {
+.btn-entrar:hover, .btn-registar:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Main Content */
@@ -104,13 +106,13 @@ main {
     align-items: center;
 }
 
-/* Estilo para o container da verificação */
-.verificacao-container {
-    background: rgba(255, 255, 255, 0.95);
+/* Estilos para a caixa de login */
+.login-container {
+    background: rgba(255, 255, 255, 0.97);
     border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 35px rgba(41, 47, 126, 0.25);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(41, 47, 126, 0.1);
     padding: 3rem;
     width: 95%;
     max-width: 500px;
@@ -118,7 +120,7 @@ main {
     text-align: center;
 }
 
-.verificacao-container h2 {
+.login-container h2 {
     color: #292f7e;
     font-size: 2rem;
     font-weight: 600;
@@ -126,42 +128,52 @@ main {
     position: relative;
 }
 
-.verificacao-container h2::after {
+.login-container h2::after {
     content: '';
     position: absolute;
     bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
-    width: 100px;
+    width: 80px;
     height: 3px;
-    background: linear-gradient(to right, #292f7e, #6478FF);
+    background: linear-gradient(to right, #292f7e, #3f4cad);
     border-radius: 2px;
 }
 
-.verificacao-container input[type="text"] {
+.login-container label {
+    display: block;
+    text-align: left;
+    margin-top: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #292f7e;
+    font-size: 1rem;
+}
+
+.login-container input {
     width: 100%;
     padding: 1rem 1.5rem;
     border: 2px solid #e1e5f2;
     border-radius: 12px;
     font-size: 1.1rem;
     color: #292f7e;
-    margin: 1.5rem 0;
+    margin-bottom: 1.5rem;
     transition: all 0.3s ease;
     background-color: rgba(255, 255, 255, 0.9);
 }
 
-.verificacao-container input[type="text"]:focus {
+.login-container input:focus {
     border-color: #292f7e;
     box-shadow: 0 0 0 4px rgba(41, 47, 126, 0.1);
     outline: none;
     background-color: white;
 }
 
-.verificacao-container input[type="text"]:hover {
+.login-container input:hover {
     border-color: #292f7e;
 }
 
-.verificacao-container button {
+.login-container button {
     width: 100%;
     background: linear-gradient(45deg, #292f7e, #3f4cad);
     color: white;
@@ -177,105 +189,63 @@ main {
     margin-top: 1rem;
 }
 
-.verificacao-container button:hover {
+.login-container button:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(41, 47, 126, 0.2);
     background: linear-gradient(45deg, #3f4cad, #292f7e);
 }
 
-.verificacao-container button:active {
+.login-container button:active {
     transform: translateY(0);
 }
 
-.status-message {
-    margin-top: 1.5rem;
-    padding: 1rem;
+.mensagem-erro {
+    color: #dc3545;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    padding: 0.5rem;
     border-radius: 8px;
-    font-size: 0.95rem;
+    background-color: rgba(220, 53, 69, 0.1);
+}
+
+.login-container p {
+    margin: 1.5rem 0;
+    color: #666;
+}
+
+.login-container a {
     color: #292f7e;
-    background-color: rgba(41, 47, 126, 0.1);
-}
-
-/* Estilo para a mensagem de sucesso */
-.mensagem-sucesso {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    padding: 3rem;
-    width: 95%;
-    max-width: 500px;
-    margin: 2rem auto;
-    text-align: center;
-}
-
-.mensagem-sucesso h2 {
-    color: #292f7e;
-    font-size: 1.8rem;
-    font-weight: 600;
-    margin-bottom: 2rem;
-    position: relative;
-}
-
-.mensagem-sucesso h2::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 3px;
-    background: linear-gradient(to right, #292f7e, #6478FF);
-    border-radius: 2px;
-}
-
-.btn-redirecionar {
-    display: inline-block;
-    background: linear-gradient(45deg, #292f7e, #3f4cad);
-    color: white;
-    padding: 1rem 2rem;
-    border-radius: 12px;
-    font-size: 1.1rem;
-    font-weight: 500;
     text-decoration: none;
+    font-weight: 500;
     transition: all 0.3s ease;
-    margin-top: 1.5rem;
 }
 
-.btn-redirecionar:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(41, 47, 126, 0.2);
-    background: linear-gradient(45deg, #3f4cad, #292f7e);
-}
-
-.btn-redirecionar:active {
-    transform: translateY(0);
+.login-container a:hover {
+    color: #3f4cad;
+    text-decoration: underline;
 }
 
 /* Footer */
 .footer {
-    background-color: rgba(175, 208, 244, 0.95);
-    color: #292f7e;
+    background-color: rgba(41, 47, 126, 0.95);
+    color: white;
     width: 100%;
     height: 5rem;
     text-align: center;
     padding: 2rem 0;
     margin-top: auto;
-    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
-    .verificacao-container,
-    .mensagem-sucesso {
+    .login-container {
         width: 90%;
         padding: 2rem;
     }
 
-    .verificacao-container h2,
-    .mensagem-sucesso h2 {
-        font-size: 1.5rem;
+    .login-container h2 {
+        font-size: 1.8rem;
     }
 
     .navbar {
@@ -283,8 +253,8 @@ main {
     }
 
     .btn-entrar,
-    .btn-cadastrar {
+    .btn-registar {
         padding: 0.6rem 1rem;
         font-size: 0.9rem;
     }
-}
+} 

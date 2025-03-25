@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico de Consultas - Vitalis Clínica</title>
+    <link rel="stylesheet" href="../CSS/historico_consulta.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Adicionar Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_blue.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <a href="../HTML/index.html"><img src="../images/logo_transparent.png" alt="Logo Vitalis" class="img-header"></a>
+            </div>
+            
+            <div class="title-container">
+                <h1 class="h1-header">Vitalis Clínica</h1>
+            </div>
+
+            <nav class="navbar">
+                <a href="../PHP/painel_cliente.php" class="btn-voltar">
+                    <i class="arrow"></i>
+                    Voltar
+                </a>
+
+                <!-- Botão de Menu -->
+                <div class="dropdown">
+                    <button class="dropbtn three-dots-btn">
+                        <span class="dots">•••</span>
+                        <i class="arrow"></i>
+                    </button>
+                    <div class="dropdown-content three-dots-dropdown">
+                        <a href="../PHP/conta.html" class="dropdown-item">Minha Conta</a>
+                        <a href="../PHP/logout.php" class="dropdown-item">Terminar Sessão</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <div class="historico-box">
+                <h2>Histórico de Consultas</h2>
+                
+                <!-- Adicionar barra de pesquisa e filtros -->
+                <div class="search-container">
+                    <div class="search-filter-wrapper">
+                        <select id="search-filter" class="search-filter">
+                            <option value="id_consulta">ID da Consulta</option>
+                            <option value="tipo_consulta">Tipo de Consulta</option>
+                            <option value="nome_medico">Médico</option>
+                            <option value="data_consulta">Data</option>
+                        </select>
+                        <input type="text" id="search-input" class="search-input" placeholder="Pesquisar por ID da consulta...">
+                        <button id="search-button" class="search-button">
+                            <i class="search-icon"></i>
+                            Pesquisar
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="loading" class="loading-indicator" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>A carregar consultas...</p>
+                </div>
+                
+                <div id="sem-resultados" class="sem-consultas" style="display: none;">
+                    Nenhuma consulta encontrada com os critérios de pesquisa.
+                </div>
+                
+                <div id="consultas-wrapper">
+                    <?php if (isset($_SESSION['consultas_historico']) && !empty($_SESSION['consultas_historico'])): ?>
+                        <?php foreach ($_SESSION['consultas_historico'] as $consulta): ?>
+                            <div class="consulta-card" onclick="abrirDetalhesConsulta(this)" data-id="<?php echo $consulta['id_consulta']; ?>">
+                                <div class="consulta-header">
+                                    <div class="consulta-info-principal">
+                                        <div class="consulta-data-hora">
+                                            <span class="data">
+                                                <?php 
+                                                    $data = new DateTime($consulta['data_consulta']);
+                                                    echo $data->format('d/m/Y');
+                                                ?>
+                                            </span>
+                                            <span class="hora">
+                                                <?php 
+                                                    $hora = new DateTime($consulta['hora_consulta']);
+                                                    echo $hora->format('H:i');
+                                                ?>
+                                            </span>
+                                        </div>
+                                        <div class="consulta-tipo"><?php echo $consulta['tipo_consulta']; ?></div>
+                                    </div>
+                                    <div class="consulta-status <?php echo strtolower($consulta['estado']); ?>">
+                                        <?php echo $consulta['estado']; ?>
+                                    </div>
+                                </div>
+
+                                <div class="consulta-corpo">
+                                    <div class="medico-info">
+                                        <h3>Médico</h3>
+                                        <div class="medico-detalhes">
+                                            <p class="nome-medico">Dr(a). <?php echo $consulta['nome_medico']; ?></p>
+                                            <p class="especialidade"><?php echo $consulta['especialidade']; ?></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="consulta-resumo">
+                                        <p class="ver-mais">Clique para ver detalhes completos</p>
+                                    </div>
+                                </div>
+
+                                <!-- Dados ocultos para o modal -->
+                                <div class="consulta-dados-completos" style="display: none;">
+                                    <div class="dado-consulta" data-label="ID da Consulta"><?php echo $consulta['id_consulta']; ?></div>
+                                    <div class="dado-consulta" data-label="Tipo de Consulta"><?php echo $consulta['tipo_consulta']; ?></div>
+                                    <div class="dado-consulta" data-label="Data"><?php echo $data->format('d/m/Y'); ?></div>
+                                    <div class="dado-consulta" data-label="Hora"><?php echo $hora->format('H:i'); ?></div>
+                                    <div class="dado-consulta" data-label="Estado"><?php echo $consulta['estado']; ?></div>
+                                    <div class="dado-consulta" data-label="Médico">Dr(a). <?php echo $consulta['nome_medico']; ?></div>
+                                    <div class="dado-consulta" data-label="Especialidade"><?php echo $consulta['especialidade']; ?></div>
+                                    <?php if (!empty($consulta['descricao'])): ?>
+                                        <div class="dado-consulta" data-label="Descrição"><?php echo $consulta['descricao']; ?></div>
+                                    <?php else: ?>
+                                        <div class="dado-consulta" data-label="Descrição">Nenhuma descrição disponível</div>
+                                    <?php endif; ?>
+                                    
+                                    <?php if (!empty($consulta['observacoes'])): ?>
+                                        <div class="dado-consulta" data-label="Observações"><?php echo $consulta['observacoes']; ?></div>
+                                    <?php else: ?>
+                                        <div class="dado-consulta" data-label="Observações">Nenhuma observação disponível</div>
+                                    <?php endif; ?>
+                                    
+                                    <?php if (!empty($consulta['prescricao'])): ?>
+                                        <div class="dado-consulta" data-label="Prescrição"><?php echo $consulta['prescricao']; ?></div>
+                                    <?php else: ?>
+                                        <div class="dado-consulta" data-label="Prescrição">Nenhuma prescrição disponível</div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p class="sem-consultas">Não tem consultas concluídas no histórico.</p>
+                    <?php endif; ?>
+                </div>
+
+                <div class="paginacao" id="paginacao">
+                    <!-- Botões de paginação serão adicionados via JavaScript -->
+                </div>
+            </div>
+        </main>
+
+        <!-- Modal para exibir detalhes completos da consulta -->
+        <div id="modalDetalhes" class="modal">
+            <div class="modal-detalhes-content">
+                <span class="close-button" onclick="fecharModal()">&times;</span>
+                <h2>Detalhes da Consulta</h2>
+                
+                <div class="detalhes-consulta">
+                    <div id="detalhes-conteudo">
+                        <!-- O conteúdo será preenchido dinamicamente pelo JavaScript -->
+                    </div>
+                </div>
+                
+                <button class="btn-fechar" onclick="fecharModal()">Fechar</button>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>Copyright &copy; 2025 Vitalis Clínica</p>
+        </footer>
+    </div>
+
+    <script src="../JS/historico_consulta.js"></script>
+    <!-- Adicionar Flatpickr JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/pt.js"></script>
+</body>
+
+</html> 

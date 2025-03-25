@@ -1,73 +1,112 @@
 document.addEventListener('DOMContentLoaded', function () {
     const registoForm = document.getElementById('registoForm');
     const erroSenha = document.getElementById('erroSenha');
+    const erroSenhaComprimento = document.getElementById('erroSenhaComprimento');
 
-    // Função para validar as senhas ao enviar o formulário
+    // Lista de nacionalidades ordenadas
+    const nacionalidades = [
+        "Afegão(ã)", "Alemão(ã)", "Angolano(a)", "Argentino(a)", "Australiano(a)", 
+        "Belga", "Boliviano(a)", "Brasileiro(a)", "Cabo-verdiano(a)", "Canadense", 
+        "Chileno(a)", "Chinês(a)", "Colombiano(a)", "Coreano(a)", "Cubano(a)", 
+        "Dinamarquês(a)", "Espanhol(a)", "Estadunidense", "Francês(a)", "Grego(a)", 
+        "Guineense", "Holandês(a)", "Húngaro(a)", "Indiano(a)", "Inglês(a)", 
+        "Italiano(a)", "Japonês(a)", "Moçambicano(a)", "Mexicano(a)", "Norueguês(a)", 
+        "Paraguaio(a)", "Peruano(a)", "Português(a)", "Russo(a)", "Sueco(a)", 
+        "Suíço(a)", "Timorense", "Uruguaio(a)", "Venezuelano(a)"
+    ];
+    const selectNacionalidade = document.getElementById("nacionalidade");
+
+    // Adiciona nacionalidades dinamicamente
+    nacionalidades.forEach(nacionalidade => {
+        let option = document.createElement("option");
+        option.value = nacionalidade;
+        option.textContent = nacionalidade;
+        selectNacionalidade.appendChild(option);
+    });
+
+    // Configuração do Flatpickr para o campo de data de nascimento
+    flatpickr("#data_nascimento", {
+        dateFormat: "Y-m-d", // Formato da data
+        defaultDate: "2000-01-01", // Data padrão
+        maxDate: "today", // Impede selecionar datas futuras
+        locale: "pt", // Localização em português
+        disableMobile: true, // Desativa o date picker nativo em dispositivos móveis
+        onChange: function(selectedDates, dateStr, instance) {
+            console.log("Data selecionada:", dateStr);
+        }
+    });
+
+    // Validação das senhas
     function validarSenhas() {
         const senha = document.getElementById('senha').value;
         const confirmarSenha = document.getElementById('confirmar_senha').value;
 
-        if (senha !== confirmarSenha) {
-            erroSenha.style.display = 'block'; // Mostra a mensagem de erro
-            return false; // Impede o envio do formulário
-        } else {
-            erroSenha.style.display = 'none'; // Esconde a mensagem de erro
-            return true; // Permite o envio do formulário
-        }
+        erroSenha.style.display = senha !== confirmarSenha ? 'block' : 'none';
+        return senha === confirmarSenha;
     }
 
-    // Validação em tempo real para senhas
-    document.getElementById('confirmar_senha').addEventListener('input', function () {
+    // Validação do comprimento da senha
+    function validarComprimentoSenha() {
         const senha = document.getElementById('senha').value;
-        const confirmarSenha = this.value;
+        const senhaValida = senha.length >= 6;
 
-        if (senha !== confirmarSenha) {
-            erroSenha.style.display = 'block'; // Mostra a mensagem de erro
-        } else {
-            erroSenha.style.display = 'none'; // Esconde a mensagem de erro
-        }
+        erroSenhaComprimento.style.display = senhaValida ? 'none' : 'block';
+        return senhaValida;
+    }
+
+    document.getElementById('senha').addEventListener('input', validarComprimentoSenha);
+    document.getElementById('confirmar_senha').addEventListener('input', validarSenhas);
+
+    // NIF e Telefone: Permitir apenas números e limitar a 9 dígitos
+    ['nif', 'telefone'].forEach(id => {
+        document.getElementById(id).addEventListener('input', function () {
+            this.value = this.value.replace(/\D/g, '').slice(0, 9);
+        });
     });
 
-    // Validação do NIF (exemplo simples)
-    document.getElementById('nif').addEventListener('input', function () {
-        const nif = this.value;
-        const nifValido = /^\d{9}$/.test(nif); // Verifica se o NIF tem 9 dígitos
-
-        if (!nifValido) {
-            this.setCustomValidity('O NIF deve ter exatamente 9 dígitos.');
-        } else {
-            this.setCustomValidity('');
-        }
-    });
-
-    // Validação do Telefone (exemplo simples)
-    document.getElementById('telefone').addEventListener('input', function () {
-        const telefone = this.value;
-        const telefoneValido = /^\d{9}$/.test(telefone); // Verifica se o telefone tem 9 dígitos
-
-        if (!telefoneValido) {
-            this.setCustomValidity('O telefone deve ter exatamente 9 dígitos.');
-        } else {
-            this.setCustomValidity('');
-        }
-    });
-
-    // Validação do Email (exemplo simples)
+    // Validação de email
     document.getElementById('email').addEventListener('input', function () {
-        const email = this.value;
-        const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); // Verifica se o email é válido
-
-        if (!emailValido) {
-            this.setCustomValidity('Por favor, insira um email válido.');
-        } else {
-            this.setCustomValidity('');
-        }
+        const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value);
+        this.setCustomValidity(emailValido ? '' : 'Por favor, insira um email válido.');
     });
 
-    // Adicionar evento de submit ao formulário
+    // Formatação automática do Código Postal (xxxx-xxx)
+    document.getElementById('codigo_postal').addEventListener('input', function () {
+        let valor = this.value.replace(/\D/g, ''); // Remove tudo que não for número
+
+        if (valor.length > 4) {
+            valor = valor.slice(0, 4) + '-' + valor.slice(4, 7);
+        }
+
+        this.value = valor;
+    });
+
+    // Concatenação do endereço antes de enviar
+    function concatenarEndereco() {
+        const morada = document.getElementById('morada').value;
+        const apartamento = document.getElementById('apartamento').value;
+        const codigoPostal = document.getElementById('codigo_postal').value;
+        const distrito = document.getElementById('distrito').value;
+        const concelho = document.getElementById('concelho').value;
+
+        let enderecoCompleto = `${morada}, ${apartamento ? apartamento + ', ' : ''}${codigoPostal}, ${distrito}, ${concelho}`;
+
+        let campoEndereco = document.getElementById("endereco_completo");
+        if (!campoEndereco) {
+            campoEndereco = document.createElement("input");
+            campoEndereco.type = "hidden";
+            campoEndereco.id = "endereco_completo";
+            campoEndereco.name = "endereco";
+            registoForm.appendChild(campoEndereco);
+        }
+        campoEndereco.value = enderecoCompleto;
+    }
+
     registoForm.addEventListener('submit', function (event) {
-        if (!validarSenhas()) {
-            event.preventDefault(); // Impede o envio do formulário se as senhas não coincidirem
+        if (!validarSenhas() || !validarComprimentoSenha()) {
+            event.preventDefault();
+        } else {
+            concatenarEndereco();
         }
     });
 });

@@ -2,36 +2,96 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
-header {
-    background-color: #afd0f4;
-    color: white;
-    padding: 1rem;
-    height: 7rem;
-}
-
-body{
+body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background-image: url('../images/clinica.jpeg'); 
-    backdrop-filter: blur(1.5px);
-    background-size: cover; 
+    background-image: url('../images/clinica.jpeg');
+    background-size: cover;
     background-position: center;
-    background-attachment: fixed; 
+    background-attachment: fixed;
     background-repeat: no-repeat;
+    color: #333;
+    min-height: 100vh;
 }
 
-main {
-    flex: 1; /* Faz o conteúdo crescer e empurrar o footer para baixo */
-    padding: 20px;
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header Styles */
+header {
+    background-color: rgba(175, 208, 244, 0.95);
+    padding: 1rem 2rem;
+    height: 7rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    width: 33.33%;
 }
 
 .img-header {
-    width: 80px; 
-    margin-left: 7rem;
-    float: left;
+    width: 80px;
+    margin-left: 2rem;
+}
+
+.title-container {
+    width: 33.33%;
+    text-align: center;
+}
+
+.h1-header {
+    color: #292f7e;
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.navbar {
+    display: flex;
+    gap: 20px;
+    width: 33.33%;
+    justify-content: flex-end;
+    margin-right: 2rem;
+}
+
+/* Botões de Login/Registro */
+.btn-entrar, .btn-cadastrar {
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    color: #292f7e;
+}
+
+.btn-entrar {
+    background-color: white;
+}
+
+.btn-cadastrar {
+    background-color: transparent;
+    border: 2px solid #292f7e;
+}
+
+.btn-entrar:hover, .btn-cadastrar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .img-infobox {
@@ -39,20 +99,6 @@ main {
     margin: 10px auto 0 auto; /* Centraliza horizontalmente */
     max-width: 150px; /* Controla o tamanho máximo da imagem */
     height: auto; /* Mantém a proporção */
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Ocupa 100% da altura da tela */
-}
-
-.h1-header{
-    color: #292f7e;
-    padding-left: 1rem;
-    margin-top: 1.5rem;
-    font-family: sans-serif;
-    float: left;
 }
 
 .h1-body{
@@ -63,243 +109,220 @@ main {
     color: rgb(41, 47, 126);
 }
 
-.navbar {
-    text-decoration: none;
-    right: 3rem;
-    top: 3rem;
-    color: white;
-    position: fixed;
-}
-
-.btn-entrar {
-    text-decoration: none;
-    font-size: 17px;
-    background: white;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    margin: 2em;
-    padding: 1em 1.5em;
-    font-family: sans-serif;
-    color: rgb(41, 47, 126);
-    text-transform: uppercase;
-    position: relative;
-    transition: 0.5s ease;
-    cursor: pointer;
-}
-  
-.btn-entrar::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 2px;
-    width: 0;
-    background-color: rgb(41, 47, 126);
-    transition: 0.5s ease;
-}
-  
-.btn-entrar:hover {
-    color: #1e1e2b;
-    transition-delay: 0.5s;
-}
-  
-.btn-entrar:hover::before {
-    width: 100%;
-}
-  
-.btn-entrar::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 0;
-    width: 100%;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    transition: 0.4s ease;
-    z-index: -1;
-}
-  
-.btn-entrar:hover::after {
-    height: 100%;
-    transition-delay: 0.4s;
-    color: aliceblue;
-}
-
-.btn-registar {
-    text-decoration: none;
-    font-size: 17px;
-    background: transparent;
-    border: none;
-    margin: 2em;
-    padding: 1em 1.5em;
-    font-family: sans-serif;
-    color: #292f7e;
-    text-transform: uppercase;
-    position: relative;
-    transition: 0.5s ease;
-    cursor: pointer;
-}
-  
-.btn-registar::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 2px;
-    width: 0;
-    background-color: #292f7e;
-    transition: 0.5s ease;
-}
-  
-.btn-registar:hover {
-    color: #1e1e2b;
-    transition-delay: 0.5s;
-}
-  
-.btn-registar:hover::before {
-    width: 100%;
-}
-  
-.btn-registar::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 0;
-    width: 100%;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    transition: 0.4s ease;
-    z-index: -1;
-}
-  
-.btn-registar:hover::after {
-    height: 100%;
-    transition-delay: 0.4s;
-    color: aliceblue;
-}
-
-.footer {
-    background-color: #afd0f4;
-    color: #292f7e;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 5rem;
-    text-align: center;
-    justify-content: center;
-    vertical-align: middle;
-    padding: 2em 0;
-    margin-top: 2em;
+/* Main Content */
+main {
+    flex: 1;
+    padding-top: 8rem; /* Espaço para o header fixo */
+    padding-bottom: 2rem; /* Espaço entre o conteúdo e o footer */
 }
 
 /* Estilo para a seção de registro */
 .registo-section {
     max-width: 900px;
-    width: 100%;
-    padding: 40px;
-    background-color: rgba(255, 255, 255, 0.95); /* Fundo branco com transparência */
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Sombra mais pronunciada */
-    backdrop-filter: blur(10px); /* Efeito de desfoque */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Borda sutil */
-    margin: 20px auto; /* Centraliza o formulário */
+    width: 95%;
+    padding: 3rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    margin: 2rem auto;
 }
 
 .registo-section h2 {
     text-align: center;
-    margin-bottom: 30px;
-    font-size: 28px;
+    margin-bottom: 2.5rem;
+    font-size: 2.2rem;
     color: #292f7e;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    font-weight: 600;
+    position: relative;
+}
+
+.registo-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(to right, #292f7e, #6478FF);
+    border-radius: 2px;
 }
 
 .registo-section label {
     display: block;
-    margin-top: 15px;
-    font-weight: bold;
+    margin-top: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
     color: #292f7e;
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 .registo-section input,
 .registo-section select,
 .registo-section textarea {
     width: 100%;
-    padding: 12px;
-    margin-top: 8px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    background-color: rgba(255, 255, 255, 0.9); /* Fundo semi-transparente */
+    padding: 0.8rem 1.2rem;
+    margin-bottom: 1.5rem;
+    border: 2px solid #e1e5f2;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
 }
 
 .registo-section input:focus,
 .registo-section select:focus,
 .registo-section textarea:focus {
     border-color: #292f7e;
-    box-shadow: 0 0 8px rgba(41, 47, 126, 0.3);
+    box-shadow: 0 0 0 4px rgba(41, 47, 126, 0.1);
     outline: none;
-    background-color: white; /* Fundo branco ao focar */
+    background-color: white;
+}
+
+.registo-section input:hover,
+.registo-section select:hover,
+.registo-section textarea:hover {
+    border-color: #292f7e;
 }
 
 .registo-section textarea {
     resize: vertical;
-    min-height: 100px;
+    min-height: 120px;
 }
 
 .registo-section button {
     width: 100%;
-    background-color: #292f7e;
+    background: linear-gradient(45deg, #292f7e, #3f4cad);
     color: white;
-    padding: 15px;
+    padding: 1rem;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
-    font-size: 18px;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-top: 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    margin-top: 1.5rem;
+    text-transform: uppercase;
 }
 
 .registo-section button:hover {
-    background-color: #1e235a;
     transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(41, 47, 126, 0.2);
+    background: linear-gradient(45deg, #3f4cad, #292f7e);
 }
 
 .registo-section button:active {
     transform: translateY(0);
 }
 
-/* Estilo para a mensagem de erro */
-#erroSenha {
-    color: #ff4d4d;
-    font-size: 14px;
-    margin-top: -10px;
-    margin-bottom: 20px;
+/* Estilo para mensagens de erro */
+.mensagem-erro {
+    color: #dc3545;
+    font-size: 0.9rem;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+    background-color: rgba(220, 53, 69, 0.1);
     display: none;
-    text-align: center;
 }
 
 /* Melhoria para os campos de seleção */
 .registo-section select {
-    appearance: none; /* Remove o estilo padrão do select */
+    appearance: none;
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23292f7e'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
     background-repeat: no-repeat;
-    background-position: right 12px center;
-    background-size: 12px;
-    padding-right: 36px; /* Espaço para o ícone */
+    background-position: right 1rem center;
+    background-size: 1rem;
+    padding-right: 2.5rem;
 }
 
-/* Efeito de hover nos campos */
-.registo-section input:hover,
-.registo-section select:hover,
-.registo-section textarea:hover {
+/* Estilo para campos com erro */
+.registo-section input.error,
+.registo-section select.error,
+.registo-section textarea.error {
+    border-color: #dc3545;
+    background-color: rgba(220, 53, 69, 0.05);
+}
+
+/* Grid layout para campos relacionados */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .registo-section {
+        width: 90%;
+        padding: 2rem;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .registo-section h2 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Estilo personalizado para o Flatpickr */
+.flatpickr-calendar {
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border: none;
+    background-color: white;
+}
+
+.flatpickr-day.selected,
+.flatpickr-day.selected:hover {
+    background-color: #292f7e;
     border-color: #292f7e;
-    box-shadow: 0 0 8px rgba(41, 47, 126, 0.2);
+    color: white;
+}
+
+.flatpickr-day.today {
+    border-color: #292f7e;
+    color: #292f7e;
+}
+
+.flatpickr-day:hover {
+    background-color: rgba(41, 47, 126, 0.1);
+}
+
+.flatpickr-months .flatpickr-month {
+    background-color: #292f7e;
+    color: white;
+    border-radius: 15px 15px 0 0;
+}
+
+.flatpickr-current-month {
+    padding: 0.5rem 0;
+}
+
+.flatpickr-weekdays {
+    background-color: #f8f9fa;
+}
+
+.flatpickr-weekday {
+    color: #292f7e;
+    font-weight: 600;
+}
+
+/* Footer */
+.footer {
+    background-color: rgba(175, 208, 244, 0.95);
+    color: #292f7e;
+    width: 100%;
+    height: 5rem;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: auto; /* Empurra o footer para baixo */
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
 }

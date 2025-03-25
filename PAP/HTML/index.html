@@ -4,57 +4,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Principal</title>
+    <title>Vitalis Clínica - Cuidando de Si</title>
     <link rel="stylesheet" href="../CSS/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div class="container">
         <header>
-            <img src="../images/logo_transparent.png" alt="" class="img-header">
-            <h1 class="h1-header"> Vitalis Clínica</h1>
+            <div class="logo-container">
+                <a href="../HTML/index.html"><img src="../images/logo_transparent.png" alt="" class="img-header"></a>
+            </div>
+            
+            <div class="title-container">
+                <h1 class="h1-header">Vitalis Clínica</h1>
+            </div>
+
             <nav class="navbar">
-            <a class="btn-cadastrar" href="../HTML/registo.html">Registar-se</a>
-            <a class="btn-entrar" href="../HTML/login.html">Entrar</a>
+                <a class="btn-registar" href="../HTML/registo.html">Registar-se</a>
+                <a class="btn-entrar" href="../PHP/login.php">Entrar</a>
             </nav>
         </header>
 
-        <div class="center-title">
-            <h1 class="h1-body">Informações sobre a Clínica Healthy Plus</h1>
+        <div class="hero-section">
+            <div class="hero-content">
+                <h1>Bem-vindo à Vitalis Clínica</h1>
+                <p>O seu parceiro de confiança em cuidados de saúde</p>
+                <div class="hero-buttons">
+                    <a href="../HTML/registo.html" class="hero-btn primary">Começar Agora</a>
+                    <a href="#about" class="hero-btn secondary">Saber Mais</a>
+                </div>
+            </div>
         </div>
 
         <main class="main-content">
-            <section class="about-section">
-    
-                <div class="info-box">
-                    <h2 class="h2-body">Marcações</h2>
-                    <p>Marque consultas, faça pedidos de marcação de exames e visualize os seus agendamentos diretamente na app.</p>
-                    <img src="../images/marcacoes.png" alt="" class="img-infobox">
-                </div>
-    
-                <div class="info-box">
-                    <h2 class="h2-body">Relatórios</h2>
-                    <p>Consulte relatórios dos seus exames, sempre que precisar e em qualquer lugar.</p>
-                    <img src="../images/relatorios.png" alt="" class="img-infobox">
-                </div>
-    
-                <div class="info-box">
-                    <h2 class="h2-body">Histórico Clínico</h2>
-                    <p>Consulte resultados e todo o seu histórico de saúde, de forma simples, rápida e centralizada.</p>
-                    <img src="../images/historicos.png" alt="" class="img-infobox">
-                </div>
-    
-                <div class="info-box">
-                    <h2 class="h2-body">Saúde & Bem-Estar</h2>
-                    <p>Acompanhe dicas e recomendações para manter uma vida saudável e prevenir doenças.</p>
-                    <img src="../images/saude&bem-estar.png" alt="" class="img-infobox">
+            <section id="about" class="about-section">
+                <h2 class="section-title">Nossos Serviços</h2>
+                <div class="info-boxes">
+                    <div class="info-box">
+                        <div class="info-box-content">
+                            <div class="icon-container">
+                                <img src="../images/marcacoes.png" alt="" class="img-infobox">
+                            </div>
+                            <h3>Marcações</h3>
+                            <p>Marque consultas, faça pedidos de marcação de exames e visualize os seus agendamentos diretamente na app.</p>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="info-box-content">
+                            <div class="icon-container">
+                                <img src="../images/relatorios.png" alt="" class="img-infobox">
+                            </div>
+                            <h3>Relatórios</h3>
+                            <p>Consulte relatórios dos seus exames, sempre que precisar e em qualquer lugar.</p>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="info-box-content">
+                            <div class="icon-container">
+                                <img src="../images/historicos.png" alt="" class="img-infobox">
+                            </div>
+                            <h3>Histórico Clínico</h3>
+                            <p>Consulte resultados e todo o seu histórico de saúde, de forma simples, rápida e centralizada.</p>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="info-box-content">
+                            <div class="icon-container">
+                                <img src="../images/saude&bem-estar.png" alt="" class="img-infobox">
+                            </div>
+                            <h3>Saúde & Bem-Estar</h3>
+                            <p>Acompanhe dicas e recomendações para manter uma vida saudável e prevenir doenças.</p>
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>
 
-        <br><br><br><br>
         <footer class="footer">
-            <p>Copyright &copy; 2025 Vitalis Clínica</p>
+            <div class="footer-content">
+                <p>&copy; 2025 Vitalis Clínica. Todos os direitos reservados.</p>
+            </div>
         </footer>
     </div>
 </body>

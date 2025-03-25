@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Utilizador - Vitalis Clínica</title>
+    <link rel="stylesheet" href="../CSS/painel_cliente.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <a href="../HTML/index.html"><img src="../images/logo_transparent.png" alt="Logo Vitalis" class="img-header"></a>
+            </div>
+            
+            <div class="title-container">
+                <h1 class="h1-header">Vitalis Clínica</h1>
+            </div>
+
+            <nav class="navbar">
+                <!-- Botão de Consulta -->
+                <div class="dropdown">
+                    <button class="dropbtn consulta-btn">
+                        Consultas
+                        <i class="arrow"></i>
+                    </button>
+                    <div class="dropdown-content consulta-dropdown">
+                        <a href="../PHP/marcar_consulta.php" class="dropdown-item">Marcar Consulta</a>
+                        <a href="../PHP/alterar_consulta.php" class="dropdown-item">Alterar Consulta</a>
+                        <a href="../PHP/historico_consulta.php" class="dropdown-item">Histórico</a>
+                    </div>
+                </div>
+
+                <!-- Botão de Menu -->
+                <div class="dropdown">
+                    <button class="dropbtn three-dots-btn">
+                        <span class="dots">•••</span>
+                        <i class="arrow"></i>
+                    </button>
+                    <div class="dropdown-content three-dots-dropdown">
+                        <a href="../PHP/conta.html" class="dropdown-item">Minha Conta</a>
+                        <a href="../PHP/logout.php" class="dropdown-item">Terminar Sessão</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <div class="welcome-box">
+                <h2>Bem-vindo(a), <?php echo $_SESSION['nome_cliente']; ?>!</h2>
+                <p>Esta é a sua área pessoal. Aqui pode gerir as suas consultas e aceder ao seu histórico clínico.</p>
+            </div>
+
+            <!-- Seção de Consultas Agendadas -->
+            <div class="consultas-container">
+                <h2>Suas Consultas Agendadas</h2>
+                <div class="consultas-grid">
+                    <?php if (isset($_SESSION['consultas_agendadas']) && !empty($_SESSION['consultas_agendadas'])): ?>
+                        <?php foreach ($_SESSION['consultas_agendadas'] as $consulta): ?>
+                            <div class="consulta-card">
+                                <div class="consulta-data">
+                                    <?php 
+                                        $data = new DateTime($consulta['data_consulta']);
+                                        echo $data->format('d/m/Y');
+                                    ?>
+                                </div>
+                                <div class="consulta-hora">
+                                    <?php 
+                                        $hora = new DateTime($consulta['hora_consulta']);
+                                        echo $hora->format('H:i');
+                                    ?>
+                                </div>
+                                <div class="consulta-tipo"><?php echo $consulta['tipo_consulta']; ?></div>
+                                <div class="consulta-medico">Dr(a). <?php echo $consulta['nome_medico']; ?></div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p class="sem-consultas">Não tem consultas agendadas no momento.</p>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Copyright &copy; 2025 Vitalis Clínica</p>
+        </footer>
+    </div>
+
+    <script src="../JS/painel_cliente.js"></script>
+</body>
+
+</html>
