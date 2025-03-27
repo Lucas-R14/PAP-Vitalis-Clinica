@@ -135,30 +135,52 @@ document.addEventListener('DOMContentLoaded', function() {
         const confirmarSenha = document.getElementById('confirmarSenha').value;
         const erroSenha = document.getElementById('erroAlterarSenha');
 
+        // Limpa mensagem de erro anterior
+        erroSenha.textContent = '';
+
+        // Validações básicas
+        if (!senhaAtual || !novaSenha || !confirmarSenha) {
+            erroSenha.textContent = 'Por favor, preencha todos os campos';
+            return;
+        }
+
         if (novaSenha !== confirmarSenha) {
             erroSenha.textContent = 'As senhas não coincidem';
             return;
         }
 
-        fetch('alterar_senha.php', {
+        // Dados para enviar
+        const dados = {
+            senhaAtual: senhaAtual,
+            novaSenha: novaSenha
+        };
+
+        fetch('../PHP/alterar_senha.php', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             },
-            body: JSON.stringify({
-                senhaAtual: senhaAtual,
-                novaSenha: novaSenha
-            })
+            body: JSON.stringify(dados)
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro na resposta do servidor');
+            }
+            return response.json();
+        })
         .then(data => {
             if (data.success) {
                 alert('Senha alterada com sucesso!');
                 modalAlterarSenha.style.display = 'none';
                 formAlterarSenha.reset();
             } else {
-                erroSenha.textContent = data.message;
+                erroSenha.textContent = data.message || 'Erro ao alterar a senha';
             }
+        })
+        .catch(error => {
+            erroSenha.textContent = 'Erro ao processar a requisição. Por favor, tente novamente.';
+            console.error('Erro:', error);
         });
     });
 }); 

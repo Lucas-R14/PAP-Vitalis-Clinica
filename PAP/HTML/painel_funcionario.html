@@ -22,6 +22,19 @@
             </div>
 
             <nav class="navbar">
+                <?php if ($nivel_acesso === 'Administrador'): ?>
+                    <div class="dropdown">
+                        <button class="dropbtn">
+                            Administração
+                            <i class="arrow"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="../PHP/gerir_clientes.php" class="dropdown-item">Gerir Clientes</a>
+                            <a href="../PHP/gerir_funcionarios.php" class="dropdown-item">Gerir Funcionários</a>
+                            <a href="../PHP/criar_funcionarios.php" class="dropdown-item">Criar Contas de Funcionários</a>
+                        </div>
+                    </div>
+                <?php endif; ?>
                 <div class="dropdown">
                     <button class="dropbtn three-dots-btn">
                         <span class="dots">•••</span>
@@ -40,17 +53,6 @@
                 <h2>Bem-vindo, <?php echo $_SESSION['nome_funcionario']; ?></h2>
                 <p>Escolha uma das funcionalidades abaixo para começar.</p>
             </div>
-
-            <?php if ($nivel_acesso === 'Administrador'): ?>
-                <div class="functionality-section">
-                    <h3>Funcionalidades do Administrador</h3>
-                    <ul>
-                        <li><a href="../PHP/gerir_clientes.php">Gerir Clientes</a></li>
-                        <li><a href="../PHP/gerir_funcionarios.php">Gerir Funcionários</a></li>
-                        <li><a href="../PHP/criar_funcionarios.php">Criar Contas de Funcionários</a></li>
-                    </ul>
-                </div>
-            <?php endif; ?>
 
             <?php if ($nivel_acesso === 'Médico'): ?>
                 <div class="functionality-section">

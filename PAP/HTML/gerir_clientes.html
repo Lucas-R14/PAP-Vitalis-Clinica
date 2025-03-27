@@ -3,64 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerir Clientes</title>
+    <title>Gerir Clientes - Vitalis Clínica</title>
     <link rel="stylesheet" href="../CSS/gerir_clientes.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Gerir Clientes</h1>
-            <nav>
-                <a class="btn-voltar" href="painel_funcionario.php">Voltar</a>
+            <div class="logo-container">
+                <a href="../HTML/index.html">
+                    <img src="../images/logo_transparent.png" alt="Logo Vitalis" class="img-header">
+                </a>
+            </div>
+            
+            <div class="title-container">
+                <h1 class="h1-header">Gerir Clientes</h1>
+            </div>
+
+            <nav class="navbar">
+                <a href="../PHP/painel_funcionario.php" class="btn-voltar">
+                    <i class="fas fa-arrow-left"></i>
+                    Voltar
+                </a>
+                <div class="dropdown">
+                    <button class="dropbtn three-dots-btn">
+                        <span class="dots">•••</span>
+                        <i class="arrow"></i>
+                    </button>
+                    <div class="dropdown-content three-dots-dropdown">
+                        <a href="../PHP/perfil_funcionario.php" class="dropdown-item">Meu Perfil</a>
+                        <a href="../PHP/logout.php" class="dropdown-item">Terminar Sessão</a>
+                    </div>
+                </div>
             </nav>
         </header>
 
         <main>
-            <h2>Lista de Clientes</h2>
-
-            <!-- Barra de busca -->
             <form method="GET" action="../PHP/gerir_clientes.php" class="barra-busca">
-                <input type="text" name="busca" placeholder="Pesquisar por nome..." value="<?php echo htmlspecialchars($busca); ?>">
-                <button type="submit">Buscar</button>
+                <div class="barra-busca-container">
+                    <div class="campo-busca">
+                        <i class="fas fa-search"></i>
+                        <input type="text" 
+                               name="busca" 
+                               placeholder="Pesquisar por nome do cliente..." 
+                               value="<?php echo htmlspecialchars($busca); ?>">
+                    </div>
+                    <button type="submit">
+                        <i class="fas fa-search"></i>
+                        Buscar
+                    </button>
+                </div>
             </form>
 
-            <!-- Contêiner da tabela com scroll horizontal -->
             <div class="table-container">
                 <table>
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Nome</th>
-                            <th>Nacionalidade</th>
-                            <th>NIF</th>
-                            <th>CC</th>
-                            <th>Data de Nascimento</th>
-                            <th>Sexo</th>
-                            <th>Telefone</th>
-                            <th>Email</th>
-                            <th>Endereço</th>
-                            <th>Data de Registo</th>
-                            <th>Ações</th>
+                            <th><i class="fas fa-hashtag"></i>ID</th>
+                            <th><i class="fas fa-user"></i>Nome</th>
+                            <th><i class="fas fa-globe-americas"></i>Nacionalidade</th>
+                            <th><i class="fas fa-id-card"></i>NIF</th>
+                            <th><i class="fas fa-id-badge"></i>CC</th>
+                            <th><i class="fas fa-birthday-cake"></i>Data Nasc.</th>
+                            <th><i class="fas fa-venus-mars"></i>Sexo</th>
+                            <th><i class="fas fa-phone-alt"></i>Telefone</th>
+                            <th><i class="fas fa-envelope"></i>Email</th>
+                            <th><i class="fas fa-map-marker-alt"></i>Endereço</th>
+                            <th><i class="fas fa-calendar-check"></i>Registo</th>
+                            <th><i class="fas fa-cogs"></i>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php while ($row = $result->fetch_assoc()): ?>
                             <tr>
-                                <td><?php echo $row['id_cliente']; ?></td>
-                                <td><?php echo $row['nome']; ?></td>
-                                <td><?php echo $row['nacionalidade']; ?></td>
-                                <td><?php echo $row['nif']; ?></td>
-                                <td><?php echo $row['cc']; ?></td>
-                                <td><?php echo $row['data_nascimento']; ?></td>
-                                <td><?php echo $row['sexo']; ?></td>
-                                <td><?php echo $row['telefone']; ?></td>
-                                <td><?php echo $row['email']; ?></td>
-                                <td><?php echo $row['endereco']; ?></td>
-                                <td><?php echo $row['data_registo']; ?></td>
+                                <td><?php echo htmlspecialchars($row['id_cliente']); ?></td>
+                                <td><?php echo htmlspecialchars($row['nome']); ?></td>
+                                <td><?php echo htmlspecialchars($row['nacionalidade']); ?></td>
+                                <td><?php echo htmlspecialchars($row['nif']); ?></td>
+                                <td><?php echo htmlspecialchars($row['cc']); ?></td>
+                                <td><?php echo date('d/m/Y', strtotime($row['data_nascimento'])); ?></td>
+                                <td><?php echo htmlspecialchars($row['sexo']); ?></td>
+                                <td><?php echo htmlspecialchars($row['telefone']); ?></td>
+                                <td><?php echo htmlspecialchars($row['email']); ?></td>
+                                <td><?php echo htmlspecialchars($row['endereco']); ?></td>
+                                <td><?php echo date('d/m/Y', strtotime($row['data_registo'])); ?></td>
                                 <td>
                                     <div class="acoes-botoes">
-                                        <a href="editar_cliente.php?id=<?php echo $row['id_cliente']; ?>" class="btn-editar">Editar</a>
-                                        <a href="../PHP/excluir_cliente.php?id=<?php echo $row['id_cliente']; ?>" class="btn-excluir">Excluir</a>
+                                        <a href="editar_cliente.php?id=<?php echo $row['id_cliente']; ?>" 
+                                           class="btn-editar">
+                                            <i class="fas fa-edit"></i>
+                                            Editar
+                                        </a>
+                                        <a href="javascript:void(0)"
+                                           onclick="confirmarExclusao('<?php echo $row['id_cliente']; ?>')"
+                                           class="btn-excluir">
+                                            <i class="fas fa-trash-alt"></i>
+                                            Excluir
+                                        </a>
                                     </div>
                                 </td>
                             </tr>
@@ -76,5 +116,12 @@
     </div>
     
     <script src="../JS/gerir_clientes.js"></script>
+    <script>
+    function confirmarExclusao(id) {
+        if (confirm('Tem certeza que deseja excluir este cliente?')) {
+            window.location.href = `../PHP/excluir_cliente.php?id=${id}`;
+        }
+    }
+    </script>
 </body>
 </html>
