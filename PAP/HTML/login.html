@@ -27,7 +27,7 @@
         </header>
 
         <main>
-            <div class="login-container">
+            <div class="login-container reveal">
                 <h2>Bem-vindo de volta</h2>
                 <form method="POST" action="../PHP/login.php">
                     <label for="cc">Cartão de Cidadão ou Passaporte</label>
@@ -38,9 +38,8 @@
 
                     <button type="submit">Entrar</button>
                 </form>
-                <?php if (isset($mensagem_erro)): ?>
-                    <p class="mensagem-erro"><?php echo $mensagem_erro; ?></p>
-                <?php endif; ?>
+
+                <p id="mensagem-erro" class="mensagem-erro" style="display: none;"></p>
 
                 <p>Ainda não tem uma conta? <a href="../HTML/registo.html">Registe-se aqui</a></p>
                 <p>É um funcionário? <a href="../PHP/login_funcionario.php">Entrar aqui</a></p>
@@ -51,6 +50,7 @@
             <p>Copyright &copy; 2025 Vitalis Clínica</p>
         </footer>
     </div>
+    <script src="../JS/login.js"></script>
 </body>
 
 </html>

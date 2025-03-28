@@ -1,7 +1,8 @@
 <?php
 session_start();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+// Só processa o login se for um POST request
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['cc']) && isset($_POST['senha'])) {
     $cc = trim($_POST['cc']); // Cartão de Cidadão (cc)
     $senha_digitada = $_POST['senha']; // Senha digitada
 
@@ -16,10 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        $senha_armazenada = $row['senha'];
-
-        // Verifica a senha
-        if (password_verify($senha_digitada, $senha_armazenada)) {
+        if (password_verify($senha_digitada, $row['senha'])) {
             // Login bem-sucedido: define a sessão
             $_SESSION['logado'] = true;
             $_SESSION['id_cliente'] = $row['id_cliente'];
@@ -27,14 +25,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: painel_cliente.php"); // Redireciona para o painel
             exit();
         } else {
-            $mensagem_erro = "Senha incorreta!";
+            echo '<script>
+                window.onload = function() {
+                    document.getElementById("mensagem-erro").textContent = "Senha incorreta!";
+                    document.getElementById("mensagem-erro").style.display = "block";
+                }
+            </script>';
         }
     } else {
-        $mensagem_erro = "Cartão de Cidadão não encontrado!";
+        echo '<script>
+            window.onload = function() {
+                document.getElementById("mensagem-erro").textContent = "Cartão de Cidadão não encontrado!";
+                document.getElementById("mensagem-erro").style.display = "block";
+            }
+        </script>';
     }
 
     $conn->close();
 }
-?>
 
-<?php include '../HTML/login.html'; ?>
+include '../HTML/login.html';
+?>
