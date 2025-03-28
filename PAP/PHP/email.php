@@ -11,13 +11,13 @@ function enviarEmailVerificacao($email, $nome, $codigo_verificacao) {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'vitalis.clinica25@gmail.com';
-        $mail->Password = 'bjau vskr fwus kssp';
+        $mail->Username = 'youremail@yourdomain.com';
+        $mail->Password = 'yourpassword';
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
         $mail->CharSet = 'UTF-8';
-        $mail->setFrom('vitalis.clinica25@gmail.com', 'Vitalis Clínica');
+        $mail->setFrom('youremail@yourdomain.com', 'Your Domain');
         $mail->addAddress($email, $nome);
 
         $mail->isHTML(true);
