@@ -112,21 +112,24 @@ header {
 /* Main Content */
 main {
     flex: 1;
-    padding-top: 6rem; /* Reduzido de 8rem para 6rem */
+    padding-top: 9rem; /* Aumentado para dar mais espaço após o nav */
     padding-bottom: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 /* Estilo para a seção de registro */
 .registo-section {
-    max-width: 800px; /* Reduzido de 900px para 800px */
-    width: 95%;
-    padding: 2.5rem; /* Reduzido de 3.5rem para 2.5rem */
+    max-width: 700px; /* Reduzido de 800px para 700px */
+    width: 90%; /* Reduzido de 95% para 90% */
+    padding: 2rem;
     background: rgba(255, 255, 255, 0.97);
     border-radius: 25px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
     backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.8);
-    margin: 1.5rem auto; /* Reduzido de 2.5rem para 1.5rem */
+    margin: 0 auto; /* Removido margin-top e margin-bottom */
     transition: transform 0.3s ease;
     position: relative;
     z-index: 2;
@@ -269,14 +272,20 @@ main {
 .form-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem; /* Reduzido de 1.5rem para 1rem */
+    gap: 1rem;
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
+    main {
+        padding-top: 8rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
     .registo-section {
-        width: 90%;
-        padding: 2rem;
+        width: 100%;
+        padding: 1.5rem;
     }
 
     .form-grid {
@@ -341,60 +350,4 @@ main {
     padding: 2rem 0;
     margin-top: auto; /* Empurra o footer para baixo */
     box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.particles {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 200%; /* Aumentei para 200% para cobrir mais área vertical */
-    pointer-events: none;
-    z-index: -1;
-    overflow: hidden;
-}
-
-.particle {
-    position: absolute;
-    color: rgba(41, 47, 126, 0.6); /* Aumentei bastante a opacidade */
-    font-size: 25px;
-    pointer-events: none;
-    transition: transform 0.3s ease-out;
-    font-family: Arial, sans-serif;
-    text-shadow: 0 0 10px rgba(41, 47, 126, 0.3);
-}
-
-.particle::before {
-    content: attr(data-symbol);
-}
-
-/* Adicionar antes do footer */
-.reveal {
-    position: relative;
-    opacity: 0;
-    transform: translateY(150px);
-}
-
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0px);
-    transition: all 1s ease;
-}
-
-/* Variações do efeito */
-.reveal-left {
-    opacity: 0;
-    transform: translateX(-100px);
-}
-
-.reveal-right {
-    opacity: 0;
-    transform: translateX(100px);
-}
-
-.reveal-left.active,
-.reveal-right.active {
-    opacity: 1;
-    transform: translateX(0px);
-    transition: all 1s ease;
 }

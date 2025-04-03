@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil - Vitalis Clínica</title>
+    <link rel="stylesheet" href="../CSS/conta_funcionario.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <a href="../HTML/index.html">
+                    <img src="../images/logo_transparent.png" alt="Logo Vitalis" class="img-header">
+                </a>
+            </div>
+            
+            <div class="title-container">
+                <h1 class="h1-header">Meu Perfil</h1>
+            </div>
+
+            <nav class="navbar">
+                <a href="../PHP/painel_funcionario.php" class="btn-voltar">
+                    <i class="fas fa-arrow-left"></i>
+                    Voltar
+                </a>
+                <div class="dropdown">
+                    <button class="dropbtn three-dots-btn">
+                        <span class="dots">•••</span>
+                        <i class="arrow"></i>
+                    </button>
+                    <div class="dropdown-content three-dots-dropdown">
+                        <a href="../PHP/logout.php" class="dropdown-item">Terminar Sessão</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <div class="profile-container">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <?php 
+                            // Exibe as iniciais do nome
+                            $palavras = explode(" ", $funcionario['nome']);
+                            $iniciais = "";
+                            foreach ($palavras as $palavra) {
+                                $iniciais .= strtoupper(substr($palavra, 0, 1));
+                                if (strlen($iniciais) >= 2) break;
+                            }
+                            echo $iniciais;
+                        ?>
+                    </div>
+                    <div class="profile-title">
+                        <h2><?php echo $funcionario['nome']; ?></h2>
+                        <p class="profile-role">
+                            <span class="role-badge"><?php echo $funcionario['nivel_acesso']; ?></span>
+                            <span class="role-badge secondary"><?php echo $funcionario['cargo']; ?></span>
+                            <?php if($funcionario['especialidade']): ?>
+                                <span class="role-badge tertiary">
+                                    <?php echo $funcionario['especialidade']; ?>
+                                </span>
+                            <?php endif; ?>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="info-sections">
+                    <div class="info-section">
+                        <h3><i class="fas fa-user"></i> Informações Pessoais</h3>
+                        <div class="info-content">
+                            <div class="info-item">
+                                <span class="info-label">ID Funcionário:</span>
+                                <span class="info-value"><?php echo $funcionario['id_funcionario']; ?></span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Data de Nascimento:</span>
+                                <span class="info-value"><?php echo $data_nascimento_formatada; ?> (<?php echo $idade; ?> anos)</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Sexo:</span>
+                                <span class="info-value"><?php echo $funcionario['sexo']; ?></span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">NIF:</span>
+                                <span class="info-value"><?php echo $funcionario['nif']; ?></span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Cartão de Cidadão:</span>
+                                <span class="info-value"><?php echo $funcionario['cc']; ?></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h3><i class="fas fa-address-card"></i> Contacto</h3>
+                        <div class="info-content">
+                            <div class="info-item">
+                                <span class="info-label">Email:</span>
+                                <span class="info-value"><?php echo $funcionario['email']; ?></span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Telefone:</span>
+                                <span class="info-value"><?php echo $funcionario['telefone']; ?></span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Endereço:</span>
+                                <span class="info-value"><?php echo $funcionario['endereco']; ?></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h3><i class="fas fa-briefcase"></i> Informações Profissionais</h3>
+                        <div class="info-content">
+                            <div class="info-item">
+                                <span class="info-label">Data de Admissão:</span>
+                                <span class="info-value"><?php echo $data_admissao_formatada; ?></span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Horário de Trabalho:</span>
+                                <span class="info-value"><?php echo $funcionario['inicio_turno']; ?> às <?php echo $funcionario['fim_turno']; ?></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="actions-container">
+                    <a href="#" class="btn-action change-password" id="btnChangePassword">
+                        <i class="fas fa-key"></i>
+                        Alterar Senha
+                    </a>
+                </div>
+
+                <!-- Modal para alteração de senha -->
+                <div id="passwordModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close-modal">&times;</span>
+                        <h3>Alterar Senha</h3>
+                        <form id="changePasswordForm">
+                            <div class="form-group">
+                                <label for="currentPassword">Senha Atual:</label>
+                                <input type="password" id="currentPassword" name="currentPassword" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword">Nova Senha:</label>
+                                <input type="password" id="newPassword" name="newPassword" required minlength="6">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirmar Nova Senha:</label>
+                                <input type="password" id="confirmPassword" name="confirmPassword" required minlength="6">
+                            </div>
+                            <p id="passwordError" class="error-message"></p>
+                            <button type="submit" class="btn-submit">Salvar Alterações</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Copyright &copy; 2025 Vitalis Clínica</p>
+        </footer>
+    </div>
+
+    <script src="../JS/conta_funcionario.js"></script>
+</body>
+</html> 

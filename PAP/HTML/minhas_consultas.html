@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Consultas - Vitalis Clínica</title>
+    <link rel="stylesheet" href="../CSS/minhas_consultas.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <a href="../HTML/index.html">
+                    <img src="../images/logo_transparent.png" alt="Logo Vitalis" class="img-header">
+                </a>
+            </div>
+            
+            <div class="title-container">
+                <h1 class="h1-header">Vitalis Clínica</h1>
+            </div>
+
+            <nav class="navbar">
+                <div id="menu-medico"></div>
+                <div class="dropdown">
+                    <button class="dropbtn three-dots-btn">
+                        <span class="dots">•••</span>
+                        <i class="arrow"></i>
+                    </button>
+                    <div class="dropdown-content three-dots-dropdown">
+                        <a href="../PHP/conta_funcionario.php" class="dropdown-item">Meu Perfil</a>
+                        <a href="../PHP/logout.php" class="dropdown-item">Terminar Sessão</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <h2>Minhas Consultas</h2>
+            
+            <div class="filtros">
+                <select id="filtroEstado">
+                    <option value="todos">Todos os Estados</option>
+                    <option value="Agendada">Agendadas</option>
+                    <option value="Concluída">Concluídas</option>
+                    <option value="Cancelada">Canceladas</option>
+                    <option value="Não compareceu">Não compareceu</option>
+                </select>
+                
+                <input type="date" id="filtroData">
+            </div>
+
+            <div class="tabela-consultas">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Hora</th>
+                            <th>Paciente</th>
+                            <th>Tipo de Consulta</th>
+                            <th>Estado</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela-consultas-body">
+                        <!-- Os dados serão inseridos aqui dinamicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Copyright &copy; 2025 Vitalis Clínica</p>
+        </footer>
+    </div>
+
+    <script src="../JS/minhas_consultas.js"></script>
+</body>
+</html> 

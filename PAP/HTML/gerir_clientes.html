@@ -95,8 +95,7 @@
                                             <i class="fas fa-edit"></i>
                                             Editar
                                         </a>
-                                        <a href="javascript:void(0)"
-                                           onclick="confirmarExclusao('<?php echo $row['id_cliente']; ?>')"
+                                        <a href="../PHP/excluir_cliente.php?id=<?php echo $row['id_cliente']; ?>"
                                            class="btn-excluir">
                                             <i class="fas fa-trash-alt"></i>
                                             Excluir
@@ -116,12 +115,5 @@
     </div>
     
     <script src="../JS/gerir_clientes.js"></script>
-    <script>
-    function confirmarExclusao(id) {
-        if (confirm('Tem certeza que deseja excluir este cliente?')) {
-            window.location.href = `../PHP/excluir_cliente.php?id=${id}`;
-        }
-    }
-    </script>
 </body>
 </html>

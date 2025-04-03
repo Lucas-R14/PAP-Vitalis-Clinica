@@ -5,14 +5,8 @@
 }
 
 /* Estilos gerais */
-html, body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden; /* Evita rolagem horizontal */
-}
-
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
     background-image: url('../images/clinica.jpeg');
@@ -22,6 +16,7 @@ body {
     background-attachment: fixed;
     background-repeat: no-repeat;
     color: #333;
+    overflow-x: hidden;
 }
 
 .container {
@@ -31,167 +26,319 @@ body {
 }
 
 header {
-    background-color: rgba(175, 208, 244, 0.9); /* Fundo com transparência */
-    padding: 1rem 2rem; /* Aumente o padding horizontal */
-    height: 7rem; /* Aumente a altura do header */
+    background-color: rgba(175, 208, 244, 0.9);
+    padding: 1rem 2rem;
+    height: 7rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+header h1 {
+    color: #292f7e;
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 600;
+}
+
 .btn-voltar {
-    background-color: #292f7e;
+    background: linear-gradient(135deg, #292f7e, #1a1f5c);
     color: white;
-    padding: 0.75rem 1.5rem; /* Ajuste o padding para um tamanho confortável */
+    padding: 0.9rem 1.8rem;
     border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    text-decoration: none; /* Remove o sublinhado padrão dos links */
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .btn-voltar:hover {
-    background-color: #1a1f5c;
-    transform: translateY(-2px);
+    background: linear-gradient(135deg, #1a1f5c, #292f7e);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.btn-voltar:active {
-    transform: translateY(0);
+main {
+    padding: 2rem;
+    flex: 1;
 }
 
 /* Estilos para a seção do formulário */
 .form-section {
-    max-width: 900px;
+    max-width: 1100px;
     width: 100%;
-    padding: 40px;
-    background-color: rgba(255, 255, 255, 0.95); /* Fundo branco com transparência */
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Sombra mais pronunciada */
-    backdrop-filter: blur(10px); /* Efeito de desfoque */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Borda sutil */
-    margin: 20px auto; /* Centraliza o formulário */
+    padding: 3.5rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.92));
+    border-radius: 25px;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin: 2rem auto;
+    animation: fadeIn 0.5s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.form-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(to right, #292f7e, #6478FF, #292f7e);
+    z-index: 1;
 }
 
 .form-section h2 {
     text-align: center;
-    margin-bottom: 30px;
-    font-size: 28px;
-    color: #292f7e;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    margin-bottom: 3rem;
+    font-size: 2.3rem;
+    background: linear-gradient(135deg, #292f7e, #6478FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 1.2rem;
+    letter-spacing: 0.5px;
+}
+
+.form-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(to right, #292f7e, #6478FF);
+    border-radius: 4px;
+}
+
+/* Layout aprimorado em duas colunas */
+#criarFuncionarioForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
 }
 
 .form-section label {
     display: block;
-    margin-top: 15px;
-    font-weight: bold;
+    margin-bottom: 0.8rem;
     color: #292f7e;
-    font-size: 16px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.form-section label.required::after {
+    content: '*';
+    color: #dc3545;
+    margin-left: 5px;
+    font-size: 1.2rem;
+}
+
+.form-section input:focus + label::before,
+.form-section select:focus + label::before {
+    display: none;
 }
 
 .form-section input,
-.form-section select,
-.form-section textarea {
+.form-section select {
     width: 100%;
-    padding: 12px;
-    margin-top: 8px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    background-color: rgba(255, 255, 255, 0.9); /* Fundo semi-transparente */
+    padding: 1.1rem 1.2rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 15px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .form-section input:focus,
-.form-section select:focus,
-.form-section textarea:focus {
+.form-section select:focus {
     border-color: #292f7e;
-    box-shadow: 0 0 8px rgba(41, 47, 126, 0.3);
+    box-shadow: 0 0 20px rgba(41, 47, 126, 0.15);
+    transform: translateY(-3px);
     outline: none;
-    background-color: white; /* Fundo branco ao focar */
 }
 
-.form-section textarea {
-    resize: vertical;
-    min-height: 100px;
-}
-
-.form-section button {
-    width: 100%;
-    background-color: #292f7e;
-    color: white;
-    padding: 15px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-top: 20px;
-}
-
-.form-section button:hover {
-    background-color: #1e235a;
+.form-section input:hover,
+.form-section select:hover {
+    border-color: #6478FF;
     transform: translateY(-2px);
 }
 
-.form-section button:active {
-    transform: translateY(0);
+/* Melhorias nos campos específicos */
+#criarFuncionarioForm #data_nascimento,
+#criarFuncionarioForm #codigo_postal,
+#criarFuncionarioForm #inicio_turno,
+#criarFuncionarioForm #fim_turno {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23292f7e' width='24' height='24'%3e%3cpath d='M12 8V12L15 15M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z' stroke='%23292f7e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 20px;
+    padding-right: 45px;
 }
 
-/* Estilo para mensagens de sucesso e erro */
-.mensagem-sucesso {
-    color: #28a745;
-    text-align: center;
-    margin-top: 20px;
-    font-size: 16px;
+/* Campos que ocupam a linha inteira com efeitos melhorados */
+#criarFuncionarioForm #senha,
+#criarFuncionarioForm #confirmar_senha,
+#criarFuncionarioForm button, 
+#criarFuncionarioForm #nivel_acesso {
+    grid-column: span 2;
 }
 
-.mensagem-sucesso {
-    background-color: rgba(255, 255, 255, 0.9);
-    color: green;
-    padding: 2rem;
-    border-radius: 8px;
-    text-align: center;
-    font-size: 1.5rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    margin: 2rem auto;
-    max-width: 600px;
+/* Estilo para campos obrigatórios */
+.form-section input:required,
+.form-section select:required {
+    background-image: none;
 }
 
 .mensagem-erro {
     color: #dc3545;
+    background-color: rgba(248, 215, 218, 0.9);
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    border-left: 5px solid #dc3545;
+    font-size: 1rem;
+    grid-column: span 2;
+    box-shadow: 0 3px 10px rgba(220, 53, 69, 0.1);
+    display: flex;
+    align-items: center;
+}
+
+.mensagem-erro::before {
+    content: "⚠️";
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+/* Botão melhorado */
+.form-section button {
+    background: linear-gradient(135deg, #292f7e, #1a1f5c);
+    color: white;
+    padding: 1.3rem 2rem;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 2rem;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 0 8px 25px rgba(41, 47, 126, 0.25);
+}
+
+.form-section button:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a1f5c, #292f7e);
+    z-index: -2;
+}
+
+.form-section button:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(135deg, #6478FF, #3d49b5);
+    transition: all 0.4s;
+    z-index: -1;
+}
+
+.form-section button:hover:before {
+    width: 100%;
+}
+
+.form-section button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(41, 47, 126, 0.3);
+}
+
+.form-section button:active {
+    transform: translateY(-2px);
+}
+
+/* Estilos para grupos de campos relacionados */
+.campo-grupo {
+    position: relative;
+}
+
+/* Melhorias nos campos senha */
+#criarFuncionarioForm #senha,
+#criarFuncionarioForm #confirmar_senha {
+    padding-right: 50px;
+}
+
+/* Estilo para placeholder */
+.form-section input::placeholder {
+    color: #aaa;
+    font-style: italic;
+    opacity: 0.7;
+}
+
+/* Animação suave para os campos */
+@keyframes focusField {
+    0% { transform: scale(0.98); }
+    70% { transform: scale(1.01); }
+    100% { transform: scale(1); }
+}
+
+.form-section input:focus,
+.form-section select:focus {
+    animation: focusField 0.3s ease forwards;
+}
+
+.mensagem-sucesso {
+    background: linear-gradient(135deg, rgba(40, 167, 69, 0.95), rgba(32, 134, 55, 0.95));
+    color: white;
+    padding: 3rem;
+    border-radius: 20px;
     text-align: center;
-    margin-top: 20px;
-    font-size: 16px;
+    font-size: 1.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    margin: 2rem auto;
+    max-width: 800px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: fadeIn 0.5s ease;
+    line-height: 1.6;
 }
 
 /* Melhoria para os campos de seleção */
 .form-section select {
-    appearance: none; /* Remove o estilo padrão do select */
+    appearance: none;
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23292f7e'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
     background-repeat: no-repeat;
     background-position: right 12px center;
     background-size: 12px;
-    padding-right: 36px; /* Espaço para o ícone */
-}
-
-/* Efeito de hover nos campos */
-.form-section input:hover,
-.form-section select:hover,
-.form-section textarea:hover {
-    border-color: #292f7e;
-    box-shadow: 0 0 8px rgba(41, 47, 126, 0.2);
+    padding-right: 36px;
 }
 
 /* Estilo personalizado para o Flatpickr */
 .flatpickr-calendar {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     background-color: #fff;
@@ -231,20 +378,58 @@ header {
     color: #292f7e;
 }
 
-.flatpickr-current-month .flatpickr-monthDropdown-months {
-    background-color: #292f7e;
-    color: #fff;
-}
-
-.flatpickr-current-month .flatpickr-monthDropdown-months:hover {
-    background-color: #1e235a;
-}
-
 footer {
     background-color: rgba(175, 208, 244, 0.9);
     color: #292f7e;
     text-align: center;
-    padding: 1rem 0;
+    padding: 1.2rem 0;
     margin-top: auto;
     box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+}
+
+/* Animação de entrada suave */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    #criarFuncionarioForm {
+        grid-template-columns: 1fr;
+    }
+    
+    #criarFuncionarioForm #senha,
+    #criarFuncionarioForm #confirmar_senha,
+    #criarFuncionarioForm button, 
+    #criarFuncionarioForm #nivel_acesso {
+        grid-column: span 1;
+    }
+    
+    .mensagem-erro {
+        grid-column: span 1;
+    }
+    
+    .form-section {
+        padding: 2rem;
+    }
+    
+    header {
+        padding: 1rem;
+        height: auto;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    header h1 {
+        font-size: 1.8rem;
+        text-align: center;
+    }
 }

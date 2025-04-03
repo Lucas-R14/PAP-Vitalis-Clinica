@@ -1,4 +1,13 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Adicionar classe "required" a todas as labels de campos obrigatórios
+    document.querySelectorAll('input[required], select[required]').forEach(field => {
+        const labelFor = field.id;
+        const label = document.querySelector(`label[for="${labelFor}"]`);
+        if (label) {
+            label.classList.add('required');
+        }
+    });
+
     // Configuração do Flatpickr para o campo de data de nascimento
     flatpickr("#data_nascimento", {
         dateFormat: "Y-m-d", // Formato da data
@@ -121,5 +130,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('confirmar_senha').addEventListener('input', function () {
         validarSenhas();
+    });
+
+    // Adicione essa função no final do seu arquivo JS existente
+    document.querySelectorAll('.form-section input, .form-section select').forEach(item => {
+        const label = item.previousElementSibling;
+        
+        if (label && label.tagName === 'LABEL') {
+            // Ao focar no campo
+            item.addEventListener('focus', () => {
+                label.style.color = '#292f7e';
+                label.style.transform = 'translateX(5px)';
+            });
+            
+            // Ao remover o foco
+            item.addEventListener('blur', () => {
+                label.style.color = '';
+                label.style.transform = '';
+            });
+        }
     });
 });

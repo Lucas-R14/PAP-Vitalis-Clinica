@@ -65,96 +65,125 @@ main {
     padding: 2rem;
 }
 
+/* Estilo para o título */
 h2 {
     color: #292f7e;
-    font-size: 24px;
-    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    margin-bottom: 2rem;
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    display: inline-block;
-    margin-left: 50%;
-    transform: translateX(-50%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+/* Formulário de edição */
 form {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 2rem;
-    padding-right: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    max-width: 800px;
+    margin: 2rem auto;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    position: relative;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
     color: #292f7e;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
 }
 
 .form-group input,
 .form-group select {
     width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    padding: 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.9);
 }
 
 .form-group input:focus,
 .form-group select:focus {
     border-color: #292f7e;
-    outline: none;
-    box-shadow: 0 0 8px rgba(41, 47, 126, 0.3);
-}
-
-.btn-atualizar {
-    background-color: #28a745;
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    width: 100%;
-}
-
-.btn-atualizar:hover {
-    background-color: #218838;
+    box-shadow: 0 0 15px rgba(41, 47, 126, 0.1);
     transform: translateY(-2px);
 }
 
+.form-group input:hover,
+.form-group select:hover {
+    border-color: #292f7e;
+}
+
+/* Estilo do botão atualizar */
+.btn-atualizar {
+    background: linear-gradient(135deg, #292f7e, #1a1f5c);
+    color: white;
+    padding: 1.2rem 2rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-atualizar:hover {
+    background: linear-gradient(135deg, #1a1f5c, #292f7e);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(41, 47, 126, 0.3);
+}
+
 .btn-atualizar:active {
-    transform: translateY(0);
+    transform: translateY(-1px);
 }
 
 .mensagem-sucesso {
-    background-color: rgba(255, 255, 255, 0.9);
-    color: green;
+    background: linear-gradient(135deg, rgba(40, 167, 69, 0.95), rgba(32, 134, 55, 0.95));
+    color: white;
     padding: 2rem;
-    border-radius: 8px;
+    border-radius: 15px;
     text-align: center;
     font-size: 1.5rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
     margin: 2rem auto;
-    max-width: 600px;
+    max-width: 800px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: fadeIn 0.5s ease;
 }
 
 .mensagem-erro {
     color: #dc3545;
     text-align: center;
     margin-top: 1rem;
+    background-color: rgba(248, 215, 218, 0.8);
+    padding: 1rem;
+    border-radius: 10px;
+    border-left: 4px solid #dc3545;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 footer {
@@ -215,4 +244,30 @@ footer {
 
 .flatpickr-current-month .flatpickr-monthDropdown-months:hover {
     background-color: #1e235a;
+}
+
+/* Animação de entrada suave */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Layout responsivo em duas colunas */
+@media (min-width: 768px) {
+    form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+    
+    .form-group:last-of-type,
+    .btn-atualizar {
+        grid-column: span 2;
+    }
 }

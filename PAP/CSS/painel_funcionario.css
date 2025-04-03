@@ -348,3 +348,36 @@ main {
     }
 }
 
+/* Adicionar estilos específicos para o dropdown de consultas */
+.dropdown .dropbtn:nth-child(1) {
+    position: relative;
+}
+
+/* Estilo para ícones nos itens do dropdown */
+.dropdown-content .dropdown-item i {
+    margin-right: 8px;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* Destaque especial para o botão de Consultas */
+.navbar .dropdown:nth-child(2) .dropbtn {
+    background: linear-gradient(135deg, #28a745, #218838);
+}
+
+.navbar .dropdown:nth-child(2) .dropbtn:hover {
+    background: linear-gradient(135deg, #218838, #28a745);
+}
+
+/* Animação para aparecer os itens do dropdown */
+@keyframes itemAppear {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+

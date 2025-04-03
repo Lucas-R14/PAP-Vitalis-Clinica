@@ -35,13 +35,28 @@
                         </div>
                     </div>
                 <?php endif; ?>
+                
+                <?php if ($nivel_acesso === 'Médico'): ?>
+                    <div class="dropdown">
+                        <button class="dropbtn">
+                            Consultas
+                            <i class="arrow"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="../PHP/minhas_consultas.php" class="dropdown-item">Minhas Consultas</a>
+                            <a href="../PHP/historico_consultas.php" class="dropdown-item">Histórico de Consultas</a>
+                            <a href="../PHP/agenda_medica.php" class="dropdown-item">Agenda Médica</a>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                
                 <div class="dropdown">
                     <button class="dropbtn three-dots-btn">
                         <span class="dots">•••</span>
                         <i class="arrow"></i>
                     </button>
                     <div class="dropdown-content three-dots-dropdown">
-                        <a href="../PHP/perfil_funcionario.php" class="dropdown-item">Meu Perfil</a>
+                        <a href="../PHP/conta_funcionario.php" class="dropdown-item">Meu Perfil</a>
                         <a href="../PHP/logout.php" class="dropdown-item">Terminar Sessão</a>
                     </div>
                 </div>
@@ -51,16 +66,16 @@
         <main>
             <div class="welcome-box">
                 <h2>Bem-vindo, <?php echo $_SESSION['nome_funcionario']; ?></h2>
-                <p>Escolha uma das funcionalidades abaixo para começar.</p>
             </div>
 
             <?php if ($nivel_acesso === 'Médico'): ?>
                 <div class="functionality-section">
                     <h3>Funcionalidades do Médico</h3>
                     <ul>
-                        <li><a href="gerir_consultas.php">Gerir Consultas</a></li>
-                        <li><a href="perfil.php">Meu Perfil</a></li>
-                        <li><a href="horario.php">Horário de Trabalho</a></li>
+                        <li><a href="../PHP/minhas_consultas.php">Minhas Consultas</a></li>
+                        <li><a href="../PHP/historico_consultas.php">Histórico de Consultas</a></li>
+                        <li><a href="../PHP/agenda_medica.php">Agenda Médica</a></li>
+                        <li><a href="../PHP/horario.php">Horário de Trabalho</a></li>
                     </ul>
                 </div>
             <?php endif; ?>
@@ -69,8 +84,7 @@
                 <div class="functionality-section">
                     <h3>Funcionalidades do Funcionário</h3>
                     <ul>
-                        <li><a href="perfil.php">Meu Perfil</a></li>
-                        <li><a href="horario.php">Horário de Trabalho</a></li>
+                        <li><a href="../PHP/horario.php">Horário de Trabalho</a></li>
                     </ul>
                 </div>
             <?php endif; ?>
